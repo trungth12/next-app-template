@@ -4,14 +4,20 @@ import classesQuery from '../graphql/classes.gql'
 import Ages from '../components/ages'
 import Classes from '../components/classes'
 import Link from 'next/link'
-
+import Layout from '../layouts/main'
+import Sider from '../layouts/sider'
 const Page = () => {
   return (
-    <div>
-      <Link href="/about">About</Link>
+    <Layout
+      header={<div>
+        <Link href="/about">About</Link>
+      </div>}
+      sider={<Sider />}
+    >
+      
       <Ages />
       <Classes />
-    </div>
+    </Layout>
   )
 }
 

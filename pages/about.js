@@ -2,13 +2,18 @@ import withStore from 'next-app-store/lib/with-store'
 import classesQuery from '../graphql/classes.gql'
 import Classes from '../components/classes'
 import Link from 'next/link'
-
+import Layout from '../layouts/main'
+import Sider from '../layouts/sider'
 const Page = () => {
   return (
-    <div>
-      <Link href="/">Home</Link>
+    <Layout
+      header={<div>
+        <Link href="/">Home</Link>
+      </div>}
+      sider={<Sider />}
+    >
       <Classes />
-    </div>
+    </Layout>
   )
 }
 
