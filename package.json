@@ -13,8 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^3.11.6",
+    "graphql-tag": "^2.10.0",
     "next": "^7.0.2",
-    "next-app-store": "^1.0.4",
+    "next-app-store": "^1.0.6",
     "next-web-config": "^1.0.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
