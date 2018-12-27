@@ -1,15 +1,12 @@
 import withStore from 'next-app-store/lib/with-store'
-import agesQuery from '../graphql/ages.gql'
 import classesQuery from '../graphql/classes.gql'
-import Ages from '../components/ages'
 import Classes from '../components/classes'
 import Link from 'next/link'
 
 const Page = () => {
   return (
     <div>
-      <Link href="/about">About</Link>
-      <Ages />
+      <Link href="/">Home</Link>
       <Classes />
     </div>
   )
@@ -32,7 +29,6 @@ Page.getInitialStore = (ctx) => ({
 
 Page.getInitialApolloState = async ({apolloClients, fetchPolicy}) => {   
   return Promise.all([
-    apolloClients.edu.query({query: agesQuery, fetchPolicy }),
     apolloClients.edu.query({query: classesQuery, fetchPolicy }),
   ])
 }

@@ -1,19 +1,18 @@
 import gql from 'graphql-tag'
 
 export const fragment = gql`
-fragment sche_ages_fragment on sche_ages {
+fragment sche_classes_fragment on sche_classes {
   key:id
   id
-  age_name
-  from_month
-  to_month
+  class_name
+  is_skill
 }
 `
 
 export const query = gql`
 query{
-sche_ages{
-  ...sche_ages_fragment
+sche_classes{
+  ...sche_classes_fragment
 }
 }
 ${fragment}
@@ -22,8 +21,8 @@ ${fragment}
 
 export const subscription = gql`
 subscription{
-sche_ages{
-  ...sche_ages_fragment
+sche_classes{
+  ...sche_classes_fragment
 }
 }
 ${fragment}

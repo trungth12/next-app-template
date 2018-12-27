@@ -1,6 +1,6 @@
 import {Table, Button, Icon} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/ages.gql'
+import {query, subscription} from '../graphql/classes.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -27,31 +27,25 @@ const EnhancedToolbar = connect(
   dispatch => ({ changeData: dispatch.test.changeText })
 )(Toolbar)
 
-  
-
-const Test = ({sche_ages}) => {
+const Test = ({sche_classes}) => {
   const columns = [{
     title: 'Id',
     dataIndex: 'id',
     key: 'id',
   }, {
-    title: 'Age Name',
-    dataIndex: 'age_name',
-    key: 'age_name',
+    title: 'Class Name',
+    dataIndex: 'class_name',
+    key: 'class_name',
   }, {
-    title: 'From month',
-    dataIndex: 'from_month',
-    key: 'from_month',
-  }, {
-    title: 'To Month',
-    dataIndex: 'to_month',
-    key: 'to_month',
+    title: 'Is Skill',
+    dataIndex: 'is_skill',
+    key: 'is_skill',
   }]
   
   return (
     <div>
-      <EnhancedToolbar data={sche_ages} columns={columns} />
-      <Table columns={columns} dataSource={sche_ages} />
+      <EnhancedToolbar data={sche_classes} columns={columns} />
+      <Table columns={columns} dataSource={sche_classes} />
     </div>
   )
 }
