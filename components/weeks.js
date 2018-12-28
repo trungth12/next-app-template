@@ -1,6 +1,6 @@
-import {Table, Button, Icon} from 'antd'
+import {Table, Button, Icon, Divider} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/ages.gql'
+import {query, subscription} from '../graphql/weeks.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -28,26 +28,43 @@ const EnhancedToolbar = connect(
 )(Toolbar)
 
 
-const Test = ({sche_ages}) => {
+const Test = ({sche_weeks}) => {
   const columns = [{
-    title: 'Age Name',
-    dataIndex: 'age_name',
-    key: 'age_name',
+    title: 'Week',
+    dataIndex: 'week',
+    key: 'week'
+  },{
+    title: 'Semester',
+    dataIndex: 'semester',
+    key: 'semester',
+    render: semester => (
+      <div>{semester.semester_name}</div>
+    )
+  },{
+    title: 'Start date',
+    dataIndex: 'start_date',
+    key: 'start_date',
   }, {
-    title: 'From month',
-    dataIndex: 'from_month',
-    key: 'from_month',
-  }, {
-    title: 'To Month',
-    dataIndex: 'to_month',
-    key: 'to_month',
+    title: 'End Date',
+    dataIndex: 'end_date',
+    key: 'end_date',
+  },, {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <span>
+        <a href="javascript:;">Invite {record.semester_name}</a>
+        <Divider type="vertical" />
+        <a href="javascript:;">Delete</a>
+      </span>
+    ),
   }]
   
   return (
     <div>
-      <h1>Ages</h1>
-      <EnhancedToolbar data={sche_ages} columns={columns} />
-      <Table columns={columns} dataSource={sche_ages} />
+      <h1>Weeks</h1>
+      <EnhancedToolbar data={sche_weeks} columns={columns} />
+      <Table columns={columns} dataSource={sche_weeks} />
     </div>
   )
 }

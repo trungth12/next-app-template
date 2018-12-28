@@ -3,18 +3,16 @@ import agesQuery from '../graphql/ages.gql'
 import classesQuery from '../graphql/classes.gql'
 import Ages from '../components/ages'
 import Classes from '../components/classes'
-import Link from 'next/link'
 import Layout from '../layouts/main'
 import Sider from '../layouts/sider'
+import Header from '../layouts/header'
+
 const Page = () => {
   return (
     <Layout
-      header={<div>
-        <Link href="/about">About</Link>
-      </div>}
+      header={<Header />}
       sider={<Sider />}
     >
-      
       <Ages />
       <Classes />
     </Layout>
@@ -27,14 +25,24 @@ Page.getInitialConfig = async (ctx) => ({
     edu: 'edu-1.herokuapp.com/v1alpha1/graphql'
   }
 })
-Page.getInitialStore = (ctx) => ({
-  test: {
-    data: 'Hello World 1',
-    changeText: (state, payload) => {
-      state.data = 'Leuleu'
+Page.getInitialStore = ({cookies}) => {
+  return ({
+    layouts: {
+      inlineCollapsed: (cookies.get('sider') === 'true') || false,
+      toggleCollapsed: (state, payload) => {
+        cookies.set('sider', payload)
+        state.inlineCollapsed = payload
+      }
+    },
+    test: {
+      data: cookies.get('hello') || 'Hello World 1',
+      changeText: (state, payload) => {
+        cookies.set('hello', 'Leuleu')
+        state.data = 'Leuleu'
+      }
     }
-  }
-})
+  })
+}
 
 Page.getInitialApolloState = async ({apolloClients, fetchPolicy}) => {   
   return Promise.all([

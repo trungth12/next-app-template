@@ -1,9 +1,10 @@
 import withStore from 'next-app-store/lib/with-store'
-import classesQuery from '../graphql/classes.gql'
-import Classes from '../components/classes'
-import Layout from '../layouts/main'
-import Sider from '../layouts/sider'
-import Header from '../layouts/header'
+import classesQuery from '../../graphql/classes.gql'
+import Classes from '../../components/classes'
+import Layout from '../../layouts/main'
+import Sider from '../../layouts/sider'
+import Header from '../../layouts/header'
+
 const Page = () => {
   return (
     <Layout
@@ -16,13 +17,12 @@ const Page = () => {
 }
 
 Page.getInitialConfig = async (ctx) => ({
-  redux: 'REDUX_STORE_INDEX',
+  redux: 'REDUX_STORE_EDU_CLASSES',
   apollo: {
     edu: 'edu-1.herokuapp.com/v1alpha1/graphql'
   }
 })
 Page.getInitialStore = ({cookies}) => {
-  const siderKey = 'layouts.sider.inlineCollapsed'
   return ({
     layouts: {
       inlineCollapsed: (cookies.get('sider') === 'true') || false,
@@ -34,12 +34,13 @@ Page.getInitialStore = ({cookies}) => {
     test: {
       data: cookies.get('hello') || 'Hello World 1',
       changeText: (state, payload) => {
-        cookies.set('hello', 'Leuleu' + state.inlineCollapsed)
-        state.data = 'Leuleu' + state.inlineCollapsed
+        cookies.set('hello', 'Leuleu')
+        state.data = 'Leuleu'
       }
     }
   })
 }
+
 Page.getInitialApolloState = async ({apolloClients, fetchPolicy}) => {   
   return Promise.all([
     apolloClients.edu.query({query: classesQuery, fetchPolicy }),

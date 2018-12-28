@@ -29,10 +29,6 @@ const EnhancedToolbar = connect(
 
 const Test = ({sche_classes}) => {
   const columns = [{
-    title: 'Id',
-    dataIndex: 'id',
-    key: 'id',
-  }, {
     title: 'Class Name',
     dataIndex: 'class_name',
     key: 'class_name',
@@ -43,7 +39,7 @@ const Test = ({sche_classes}) => {
   }]
   
   return (
-    <div>
+    <div><h1>Classes</h1>
       <EnhancedToolbar data={sche_classes} columns={columns} />
       <Table columns={columns} dataSource={sche_classes} />
     </div>

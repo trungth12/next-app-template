@@ -8,7 +8,7 @@ const Main = ({header = null, sider, children}) =>
   <div style={{backgroundColor: 'white'}}>
     <Layout style={{backgroundColor: 'white'}}>
       <Header style={{backgroundColor: 'white'}}>{header}</Header>
-      <Layout>
+      <Layout style={{backgroundColor: 'white'}}>
         <Sider style={{backgroundColor: 'white'}}>{sider}</Sider>
         <Content>{children}</Content>
       </Layout>
