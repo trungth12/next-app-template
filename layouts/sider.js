@@ -18,7 +18,7 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
       inlineCollapsed={inlineCollapsed}
     >
       <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Edu</span></span>}>
-        <MenuItemGroup key="g1" title="Item 1">
+        <MenuItemGroup key="g1" title="Directory">
           <Menu.Item key="1">
             <Link href="/edu/ages"><a>Ages</a></Link>
           </Menu.Item>
@@ -37,10 +37,25 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
           <Menu.Item key="6">
           <Link href="/edu/terms"><a>Terms</a></Link>
           </Menu.Item>
+          <Menu.Item key="7">
+            <Link href="/edu/classrooms"><a>Classrooms</a></Link>
+          </Menu.Item>
+          <Menu.Item key="8">
+            <Link href="/edu/students"><a>Students</a></Link>
+          </Menu.Item>
         </MenuItemGroup>
-        <MenuItemGroup key="g2" title="Item 2">
-          <Menu.Item key="4">Option 3</Menu.Item>
-          <Menu.Item key="4">Option 4</Menu.Item>
+        <MenuItemGroup key="g2" title="Admissions">
+          <Menu.Item key="9">
+          <Link href="/edu/class_teachers"><a>Teacher Admission</a></Link>
+          </Menu.Item>
+          <Menu.Item key="10">
+          <Link href="/edu/class_enrollments"><a>Student Admission</a></Link>
+          </Menu.Item>
+        </MenuItemGroup>
+        <MenuItemGroup key="g3" title="Attendance">
+        <Menu.Item key="11">
+          <Link href="/edu/class_attendances"><a>Students Attendance</a></Link>
+        </Menu.Item>
         </MenuItemGroup>
       </SubMenu>
       <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>

@@ -2,7 +2,6 @@ import Router from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import Layout from '../layouts/main'
 import Header from '../layouts/header'
-import Sider from '../layouts/sider'
 import auth, { withAuthSync } from 'next-app-store/lib/auth'
 
 const Profile = withAuthSync(props => {
@@ -11,7 +10,6 @@ const Profile = withAuthSync(props => {
   return (
     <Layout
       header={<Header />}
-      sider={<Sider />}
     >
       <img src={avatarUrl} alt='Avatar' />
       <h1>{name}</h1>
@@ -42,7 +40,7 @@ const Profile = withAuthSync(props => {
 
 Profile.getInitialProps = async ctx => {
   const token = auth(ctx)
-  const apiUrl = 'https://api.ihs.edu.vn/profile'
+  const apiUrl = 'https://web.ihs.edu.vn/api/profile'
 
   const redirectOnError = () =>
     process.browser

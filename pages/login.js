@@ -1,12 +1,11 @@
 import { Component } from 'react'
 import Layout from '../layouts/main'
 import Header from '../layouts/header'
-import Sider from '../layouts/sider'
 import { login } from 'next-app-store/lib/auth'
 
 class Login extends Component {
   static getInitialProps () {
-    const apiUrl = 'https://api.ihs.edu.vn/login'
+    const apiUrl = 'https://web.ihs.edu.vn/api/login'
     return { apiUrl }
   }
 
@@ -35,7 +34,6 @@ class Login extends Component {
     return (
       <Layout
         header={<Header />}
-        sider={<Sider />}
       >
         <div className='login'>
           <form onSubmit={this.handleSubmit}>

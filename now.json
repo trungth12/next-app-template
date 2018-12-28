@@ -2,7 +2,12 @@
   "version": 2,
   "alias": "web.ihs.edu.vn",
 	"builds": [
-	{"src": "next.config.js", "use": "@now/next"}
+	  {
+      "src": "next.config.js", "use": "@now/next"
+    },
+    {
+      "src": "api/*.js", "use": "@now/node"
+    }
 	],
 	"routes": [	
 		{	
@@ -19,6 +24,10 @@
 			"cache-control": "max-age=31536000"
 		  },
 		  "dest": "/_next/$1"
-		}
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "api/$1.js"
+    }
 	]
 }
