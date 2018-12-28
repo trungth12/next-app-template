@@ -1,6 +1,6 @@
 import {Table, Button, Icon} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/school_years.gql'
+import {query, subscription} from '../../graphql/edu/classes.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -27,27 +27,21 @@ const EnhancedToolbar = connect(
   dispatch => ({ changeData: dispatch.test.changeText })
 )(Toolbar)
 
-
-const Test = ({sche_school_years}) => {
+const Test = ({sche_classes}) => {
   const columns = [{
-    title: 'School Year Name',
-    dataIndex: 'school_year_name',
-    key: 'school_year_name',
+    title: 'Class Name',
+    dataIndex: 'class_name',
+    key: 'class_name',
   }, {
-    title: 'From year',
-    dataIndex: 'from_year',
-    key: 'from_year',
-  }, {
-    title: 'To Year',
-    dataIndex: 'to_year',
-    key: 'to_year',
+    title: 'Is Skill',
+    dataIndex: 'is_skill',
+    key: 'is_skill',
   }]
   
   return (
-    <div>
-      <h1>School Years</h1>
-      <EnhancedToolbar data={sche_school_years} columns={columns} />
-      <Table columns={columns} dataSource={sche_school_years} />
+    <div><h1>Classes</h1>
+      <EnhancedToolbar data={sche_classes} columns={columns} />
+      <Table columns={columns} dataSource={sche_classes} />
     </div>
   )
 }

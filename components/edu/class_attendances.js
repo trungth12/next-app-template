@@ -1,6 +1,6 @@
 import {Table, Button, Icon} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/class_attendances.gql'
+import {query, subscription} from '../../graphql/edu/class_attendances.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 

@@ -1,12 +1,12 @@
 import withStore from 'next-app-store/lib/with-store'
-import query from '../../graphql/class_enrollments.gql'
-import ClassEnrollments from '../../components/class_enrollments'
+import query from '../../graphql/edu/class_enrollments.gql'
+import ClassEnrollments from '../../components/edu/class_enrollments'
 import Layout from '../../layouts/main'
 import Sider from '../../layouts/sider'
 import Header from '../../layouts/header'
 import Collapse from '../../layouts/collapse'
 import dynamic from 'next/dynamic'
-const Students = dynamic(import('../../components/students'), {ssr: false})
+const Students = dynamic(import('../../components/edu/students'), {ssr: false})
 const items = [
   {
     key: 1,

@@ -1,6 +1,6 @@
 import {Table, Button, Icon, Divider} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/weeks.gql'
+import {query, subscription} from '../../graphql/edu/weeks.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 

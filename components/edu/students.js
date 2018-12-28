@@ -1,6 +1,6 @@
-import {Table, Button, Icon, Divider} from 'antd'
+import {Table, Button, Icon} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/terms.gql'
+import {query, subscription} from '../../graphql/edu/students.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -27,40 +27,43 @@ const EnhancedToolbar = connect(
   dispatch => ({ changeData: dispatch.test.changeText })
 )(Toolbar)
 
-
-const Test = ({sche_terms}) => {
+/*
+key:id
+id
+first_name
+last_name
+code
+gender
+middle_name 
+*/
+const Test = ({sche_students}) => {
   const columns = [{
-    title: 'Semester',
-    dataIndex: 'semester',
-    key: 'semester',
-    render: semester => (
-      <div>{semester.semester_name}</div>
-    )
+    title: 'First Name',
+    dataIndex: 'first_name',
+    key: 'first_name'
   },{
-    title: 'Start date',
-    dataIndex: 'start_date',
-    key: 'start_date',
+    title: 'Middle Name',
+    dataIndex: 'middle_name',
+    key: 'middle_name',
+  },{
+    title: 'Last Name',
+    dataIndex: 'last_name',
+    key: 'last_name',
+  },{
+    title: 'Code',
+    dataIndex: 'code',
+    key: 'code',
   }, {
-    title: 'End Date',
-    dataIndex: 'end_date',
-    key: 'end_date',
-  },, {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-        <a href="javascript:;">Invite {record.semester_name}</a>
-        <Divider type="vertical" />
-        <a href="javascript:;">Delete</a>
-      </span>
-    ),
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
   }]
   
   return (
     <div>
-      <h1>Terms</h1>
-      <EnhancedToolbar data={sche_terms} columns={columns} />
-      <Table columns={columns} dataSource={sche_terms} />
+      <h1>Students</h1>
+      <EnhancedToolbar data={sche_students} columns={columns} />
+      <Table columns={columns} dataSource={sche_students} />
     </div>
   )
 }

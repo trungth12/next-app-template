@@ -1,6 +1,6 @@
 import {Table, Button, Icon} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/class_teachers.gql'
+import {query, subscription} from '../../graphql/edu/classrooms.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -28,43 +28,56 @@ const EnhancedToolbar = connect(
 )(Toolbar)
 
 /*
-key:id
-  id
-  user_id  
-  class:scheClassesByclassId{
+id
+  classroom_name
+  amount
+  building
+  floor
+  url_camera
+  classes:scheClassessByclassroomId{
     class_name
-    classroom:scheClassroomsByclassroomId{
-      classroom_name
-      building
-      floor
-    }
-    age:scheAgesByageId{
+    is_skill
+    ages:scheAgesByageId{
       age_name
-      is_active      
     }
   }
 */
-const Test = ({sche_class_teachers}) => {
+const Test = ({sche_classrooms}) => {
   const columns = [{
-    title: 'UserId',
-    dataIndex: 'user_id',
-    key: 'user_id'
+    title: 'Classroom name',
+    dataIndex: 'classroom_name',
+    key: 'classroom_name'
   },{
-    title: 'Class',
-    dataIndex: 'class',
-    key: 'class',
-    render: class_ => {
-      return (
-        <div>{class_.class_name}</div>
-      )
-    }
+    title: 'Amount',
+    dataIndex: 'amount',
+    key: 'amount',
+  },{
+    title: 'Building',
+    dataIndex: 'building',
+    key: 'building',
+  }, {
+    title: 'Floor',
+    dataIndex: 'floor',
+    key: 'floor',
+  },  {
+    title: 'Camera',
+    dataIndex: 'url_camera',
+    key: 'url_camera',
+  },{
+    title: 'Classes',
+    dataIndex: 'classes',
+    render: classes => (
+      <span>
+        {classes.map(i => i.class_name).join(', ')}
+      </span>
+    ),
   }]
   
   return (
     <div>
-      <h1>Teacher Admission</h1>
-      <EnhancedToolbar data={sche_class_teachers} columns={columns} />
-      <Table columns={columns} dataSource={sche_class_teachers} />
+      <h1>Classrooms</h1>
+      <EnhancedToolbar data={sche_classrooms} columns={columns} />
+      <Table columns={columns} dataSource={sche_classrooms} />
     </div>
   )
 }

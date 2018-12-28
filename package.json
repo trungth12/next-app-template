@@ -18,7 +18,8 @@
     "next-app-store": "^1.0.18",
     "next-web-config": "^1.0.7",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "styled-icons": "^6.2.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.2.3",

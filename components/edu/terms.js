@@ -1,6 +1,6 @@
 import {Table, Button, Icon, Divider} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/semesters.gql'
+import {query, subscription} from '../../graphql/edu/terms.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -28,26 +28,22 @@ const EnhancedToolbar = connect(
 )(Toolbar)
 
 
-const Test = ({sche_semesters}) => {
+const Test = ({sche_terms}) => {
   const columns = [{
-    title: 'Semester Name',
-    dataIndex: 'semester_name',
-    key: 'semester_name',
-  }, {
-    title: 'School Year',
-    dataIndex: 'school_year',
-    key: 'school_year',
-    render: school_year => (
-      <div>{school_year.school_year_name}</div>
+    title: 'Semester',
+    dataIndex: 'semester',
+    key: 'semester',
+    render: semester => (
+      <div>{semester.semester_name}</div>
     )
   },{
     title: 'Start date',
     dataIndex: 'start_date',
     key: 'start_date',
   }, {
-    title: 'To Date',
-    dataIndex: 'to_date',
-    key: 'to_date',
+    title: 'End Date',
+    dataIndex: 'end_date',
+    key: 'end_date',
   },, {
     title: 'Action',
     key: 'action',
@@ -62,9 +58,9 @@ const Test = ({sche_semesters}) => {
   
   return (
     <div>
-      <h1>Semesters</h1>
-      <EnhancedToolbar data={sche_semesters} columns={columns} />
-      <Table columns={columns} dataSource={sche_semesters} />
+      <h1>Terms</h1>
+      <EnhancedToolbar data={sche_terms} columns={columns} />
+      <Table columns={columns} dataSource={sche_terms} />
     </div>
   )
 }

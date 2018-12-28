@@ -1,6 +1,6 @@
 import {Table, Button, Icon} from 'antd'
 import dynamic from 'next/dynamic'
-import {query, subscription} from '../graphql/class_enrollments.gql'
+import {query, subscription} from '../../graphql/edu/class_teachers.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
 
@@ -29,40 +29,26 @@ const EnhancedToolbar = connect(
 
 /*
 key:id
-id
-status
-student:scheStudentsBystudentId{
-  first_name
-  middle_name
-  last_name
-}
-class:scheClassesByclassId{
-  class_name
-  classroom:scheClassroomsByclassroomId{
-    classroom_name
-    building
-    floor
-  }
-  age:scheAgesByageId{
-    age_name
-    is_active      
-  }
-}
-*/
-const Test = ({sche_class_enrollments}) => {
-  const columns = [{
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-    },{
-    title: 'Student',
-    dataIndex: 'student',
-    key: 'student',
-    render: student => {
-      return (
-        <div>{student.first_name} {student.middle_name} {student.last_name}</div>
-      )
+  id
+  user_id  
+  class:scheClassesByclassId{
+    class_name
+    classroom:scheClassroomsByclassroomId{
+      classroom_name
+      building
+      floor
     }
+    age:scheAgesByageId{
+      age_name
+      is_active      
+    }
+  }
+*/
+const Test = ({sche_class_teachers}) => {
+  const columns = [{
+    title: 'UserId',
+    dataIndex: 'user_id',
+    key: 'user_id'
   },{
     title: 'Class',
     dataIndex: 'class',
@@ -76,9 +62,9 @@ const Test = ({sche_class_enrollments}) => {
   
   return (
     <div>
-      <h1>Student Admission</h1>
-      <EnhancedToolbar data={sche_class_enrollments} columns={columns} />
-      <Table columns={columns} dataSource={sche_class_enrollments} />
+      <h1>Teacher Admission</h1>
+      <EnhancedToolbar data={sche_class_teachers} columns={columns} />
+      <Table columns={columns} dataSource={sche_class_teachers} />
     </div>
   )
 }

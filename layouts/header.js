@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 
 import { logout } from 'next-app-store/lib/auth'
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Button } from 'antd';
+import {Wifi} from 'styled-icons/fa-solid/Wifi.cjs'
 
 class App extends React.Component {
   state = {
@@ -28,6 +29,9 @@ class App extends React.Component {
         </Menu.Item>
         <Menu.Item key="app">
           <Link href="/about"><a>About</a></Link>
+        </Menu.Item>
+        <Menu.Item key="wifi">
+          <Wifi size={20} color={'#1890ff'}/>
         </Menu.Item>
         <Menu.Item key="logout" style={{float: 'right'}}>
           <Button onClick={logout}>Logout</Button>
