@@ -15,6 +15,7 @@
     "antd": "^3.11.6",
     "axios": "^0.18.0",
     "graphql-tag": "^2.10.0",
+    "jsonwebtoken": "^8.4.0",
     "next": "^7.0.2",
     "next-app-store": "^1.0.33",
     "next-web-config": "^1.0.7",

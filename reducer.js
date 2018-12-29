@@ -1,7 +1,17 @@
 import { effect } from 'easy-peasy'; // 👈 import the helper
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
+
 import {inspect} from 'util'
 const defaultReducer = ({cookies}) => {
+  const currentUser = jwt.decode(cookies.get('token'))
+  if (currentUser) {
+    cookies.set('role', "user")
+  }
+
+  const token = cookies.get('token')
+  const currentRole = cookies.get('role')
+
   return {
     websocket: {
       status: null,
@@ -22,7 +32,9 @@ const defaultReducer = ({cookies}) => {
       }
     },
     auth: {
-      token: cookies.get('token'),
+      token,
+      currentUser,
+      currentRole,
       login: effect(async (dispatch, payload, getState) => {
         const {id_token} = payload.tokenObj
         try {
@@ -36,12 +48,21 @@ const defaultReducer = ({cookies}) => {
         }
       }),
       logout: effect(async (dispatch, payload, getState) => {
-        cookies.set('token', null)
-        dispatch.auth.tokenSaved(null)
+        cookies.remove('token')
+        cookies.remove('role')
+        dispatch.auth.resetUser()
       }),
+      resetUser: (state, payload) => {
+        state.currentRole = null
+        state.currentUser = null
+      },
       tokenSaved: (state, payload) => {
         state.token = payload
       },
+      setRole: (state, payload) => {
+        cookies.set('role', payload)
+        state.currentRole = payload
+      }
     }
   }
 }

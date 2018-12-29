@@ -13,6 +13,7 @@ const createHasuraJwtClaim = ({
     "sub": userId,
     "name": userName,
     "admin": admin,
+    "roles": roles,
     "iat": new Date().getTime() / 1000,
     "https://hasura.io/jwt/claims": {
       "x-hasura-allowed-roles": roles,
@@ -105,6 +106,5 @@ login({
 */
 
 
-const secret = '{"type":"HS256","key":"anx0bMh8q2ZmVrpQEEFVbRSFjj8LHhJGrdTFJNyDGqRT9KvKmWhWXaO-HSh3-8NJBL3lLb_y-ZxJ9ip6H-rNe1x3Wrx4VVG9YAPyp1XogMdTs1C_jr6kxH2g9I_GTBzhsccJUh3XlD0ZRNmUqPNUevNp5ugzQSm_yBhDbAwtn-kv0BQ9OPURgHXuE4n7oK2AMImTQynKY4NcxHlPTL2w9oWug0D-gDTi15Q_RLsX3RFlAlR9fGBnIt_3807lBX4JWHQDU8F_qMpTQekvEDp3oWCehFfAdgupeAY-ARMHAOyWU6l8qUR6y_DAyPaIme5oQgrHKp4LYDN1l9wthXZYuw"}'
-const jwt1 = createHasuraJwtClaim({userId:'abc',admin:false,userName:'Dung'})
+const jwt1 = createHasuraJwtClaim({userId:'e4c99360-41e6-4c35-8bd4-a8f2cb1f000d',admin:true,userName:'Dung',roles:["user", "admin"]})
 console.log(jwt.sign(jwt1, 'anx0bMh8q2ZmVrpQEEFVbRSFjj8LHhJGrdTFJNyDGqRT9KvKmWhWXaO-HSh3-8NJBL3lLb_y-ZxJ9ip6H-rNe1x3Wrx4VVG9YAPyp1XogMdTs1C_jr6kxH2g9I_GTBzhsccJUh3XlD0ZRNmUqPNUevNp5ugzQSm_yBhDbAwtn-kv0BQ9OPURgHXuE4n7oK2AMImTQynKY4NcxHlPTL2w9oWug0D-gDTi15Q_RLsX3RFlAlR9fGBnIt_3807lBX4JWHQDU8F_qMpTQekvEDp3oWCehFfAdgupeAY-ARMHAOyWU6l8qUR6y_DAyPaIme5oQgrHKp4LYDN1l9wthXZYuw'))

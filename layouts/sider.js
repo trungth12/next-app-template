@@ -1,9 +1,9 @@
 import { Menu, Icon, Button } from 'antd';
 import {connect} from 'react-redux'
 import Link from 'next/link'
+import Role from './role'
 
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
   return (
     <div>
@@ -20,10 +20,14 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
       <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Edu</span></span>}>
         <SubMenu key="g1" title={<span><Icon type="appstore" /><span>Directory</span></span>}>
           <Menu.Item key="1">
-            <Link href="/edu/ages"><a>Ages</a></Link>
-          </Menu.Item>
+            <Role roles={["user", "admin"]}>
+              <Link href="/edu/ages"><a>Ages</a></Link>
+            </Role>
+          </Menu.Item>          
           <Menu.Item key="2">
-          <Link href="/edu/classes"><a>Classes</a></Link>
+            <Role roles={["admin"]}>
+              <Link href="/edu/classes"><a>Classes</a></Link>
+            </Role>
           </Menu.Item>
           <Menu.Item key="3">
           <Link href="/edu/school_years"><a>School Years</a></Link>
