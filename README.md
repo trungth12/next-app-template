@@ -4,4 +4,4 @@
 
 Go to [this](https://mkjwk.org/)
 
-Choose SH
+Choose SH1
