@@ -7,6 +7,8 @@ import {WifiOff} from 'styled-icons/feather/WifiOff.cjs'
 import Login from 'next-app-store/lib/google-login'
 import Logout from 'next-app-store/lib/google-logout'
 import {connect} from 'react-redux'
+import {inspect} from 'util'
+
 class App extends React.Component {
   state = {
     current: 'home',
