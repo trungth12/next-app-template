@@ -1,13 +1,27 @@
 import { Layout } from 'antd';
-
+import {connect} from 'react-redux'
 const {
-  Header, Footer, Sider, Content,
+  Header, Footer, Sider, Content, Alert
 } = Layout;
 
-const Main = ({header = null, sider, children}) =>
-  <div style={{backgroundColor: 'white'}}>
+const Main = ({header = null, sider, children, errorMessage, closeErrorMessage}) => {
+  let alert =  null
+  if (errorMessage) {
+    alert = (
+      <Alert 
+        showIcon
+        message={errorMessage}
+        type="error" 
+        closeText="Close Now" 
+        onClose={() => closeErrorMessage(null)}
+      />
+    )
+  }
+  return (
+    <div style={{backgroundColor: 'white'}}>
     <Layout style={{backgroundColor: 'white'}}>
       <Header style={{backgroundColor: 'white'}}>{header}</Header>
+      {alert}
       <Layout style={{backgroundColor: 'white'}}>
         <Sider style={{backgroundColor: 'white'}}>{sider}</Sider>
         <Content>{children}</Content>
@@ -15,5 +29,13 @@ const Main = ({header = null, sider, children}) =>
       <Footer style={{backgroundColor: 'white'}}>Footer</Footer>
     </Layout>
   </div>
+  )
+}
+  
 
-export default Main
+const ConnectedMain = connect(
+  state => ({ errorMessage: state.error.errorMessage }),
+  dispatch => ({ closeErrorMessage: dispatch.error.setError })
+)(Main)
+
+export default ConnectedMain

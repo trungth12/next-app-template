@@ -6,6 +6,8 @@ import Sider from '../../layouts/sider'
 import Header from '../../layouts/header'
 import Collapse from '../../layouts/collapse'
 import dynamic from 'next/dynamic'
+import defaultReducer from '../../reducer'
+
 const Students = dynamic(import('../../components/edu/students'), {ssr: false})
 const items = [
   {
@@ -42,7 +44,9 @@ Page.getInitialConfig = async (ctx) => ({
 })
 
 Page.getInitialStore = ({cookies}) => {
+  const reducer = defaultReducer({cookies})
   return ({
+    ...reducer,
     layouts: {
       inlineCollapsed: (cookies.get('sider') === 'true') || false,
       toggleCollapsed: (state, payload) => {

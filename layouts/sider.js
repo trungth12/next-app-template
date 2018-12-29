@@ -18,7 +18,7 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
       inlineCollapsed={inlineCollapsed}
     >
       <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Edu</span></span>}>
-        <MenuItemGroup key="g1" title="Directory">
+        <SubMenu key="g1" title={<span><Icon type="appstore" /><span>Directory</span></span>}>
           <Menu.Item key="1">
             <Link href="/edu/ages"><a>Ages</a></Link>
           </Menu.Item>
@@ -43,20 +43,25 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
           <Menu.Item key="8">
             <Link href="/edu/students"><a>Students</a></Link>
           </Menu.Item>
-        </MenuItemGroup>
-        <MenuItemGroup key="g2" title="Admissions">
+        </SubMenu>
+        <SubMenu key="g2" title={<span><Icon type="appstore" /><span>Admissions</span></span>}>
           <Menu.Item key="9">
           <Link href="/edu/class_teachers"><a>Teacher Admission</a></Link>
           </Menu.Item>
           <Menu.Item key="10">
           <Link href="/edu/class_enrollments"><a>Student Admission</a></Link>
           </Menu.Item>
-        </MenuItemGroup>
-        <MenuItemGroup key="g3" title="Attendance">
-        <Menu.Item key="11">
-          <Link href="/edu/class_attendances"><a>Students Attendance</a></Link>
-        </Menu.Item>
-        </MenuItemGroup>
+        </SubMenu>
+        <SubMenu key="g3" title={<span><Icon type="appstore" /><span>Attendance</span></span>}>
+          <Menu.Item key="11">
+            <Link href="/edu/class_attendances"><a>Students Attendance</a></Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu key="g4" title={<span><Icon type="appstore" /><span>Calendar</span></span>}>
+        <Menu.Item key="12">
+            <Link href="/edu/timetables"><a>Students Timetables</a></Link>
+          </Menu.Item>
+        </SubMenu>
       </SubMenu>
       <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
         <Menu.Item key="5">Option 5</Menu.Item>

@@ -6,7 +6,7 @@ import Classes from '../components/edu/classes'
 import Layout from '../layouts/main'
 import Sider from '../layouts/sider'
 import Header from '../layouts/header'
-
+import defaultReducer from '../reducer'
 const Page = () => {
   return (
     <Layout
@@ -26,7 +26,9 @@ Page.getInitialConfig = async (ctx) => ({
   }
 })
 Page.getInitialStore = ({cookies}) => {
+  const shareReducer = defaultReducer({cookies})
   return ({
+    ...shareReducer,
     layouts: {
       inlineCollapsed: (cookies.get('sider') === 'true') || false,
       toggleCollapsed: (state, payload) => {
