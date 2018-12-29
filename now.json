@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": "web.ihs.edu.vn",
+  "alias": ["web.ihs.edu.vn"],
 	"builds": [
 	  {
       "src": "next.config.js", "use": "@now/next"
