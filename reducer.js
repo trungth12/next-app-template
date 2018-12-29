@@ -36,8 +36,7 @@ const defaultReducer = ({cookies}) => {
         }
       }),
       logout: effect(async (dispatch, payload, getState) => {
-        console.log('logging out')
-        cookies.remove('token')
+        cookies.set('token', null)
         dispatch.auth.tokenSaved(null)
       }),
       tokenSaved: (state, payload) => {
