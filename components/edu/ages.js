@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import {query, subscription} from '../../graphql/edu/ages.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
+
 const Search = Input.Search;
 
 const ExcelDownloader = dynamic(

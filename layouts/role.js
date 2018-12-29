@@ -1,10 +1,14 @@
+import React from 'react'
 import {connect} from 'react-redux'
 
-const Role = ({roles, currentRole, children, currentUser}) => {
+const Role = ({roles, currentRole, children, currentUser, ...rest}) => {
   if (!roles.includes(currentRole || !currentUser)) {
     return null
   } else {
-    return children
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, { ...rest })
+    );
+    return childrenWithProps
   }
 }
 

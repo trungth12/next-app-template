@@ -4,20 +4,22 @@ import Role from './role'
 const RolesChooser = ({currentRole, setRole, currentUser}) => {
   if (currentUser) {
     return (
-      <div>
-        <Role
+      <Role
           roles={currentUser.roles}
           >
+          <div>
         <div>Choose a role <span />
-          <Radio.Group defaultValue={currentRole} buttonStyle="solid"
+          <Radio.Group 
+            defaultValue={currentRole} 
+            buttonStyle="solid"
             onChange={(e) => setRole(e.target.value)}
           >
             <Radio.Button value="user">User</Radio.Button>
             <Radio.Button value="admin">Admin</Radio.Button>
           </Radio.Group>
         </div>
-        </Role>
-      </div>
+        </div>
+      </Role>
     )
   } else {
     return null

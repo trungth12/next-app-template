@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Role from './role'
 
 const SubMenu = Menu.SubMenu;
-const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
+const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
   return (
     <div>
       <Button type="primary" onClick={() => toggleCollapsed(!inlineCollapsed)} style={{ margin: 16 }}>
@@ -19,16 +19,16 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed, pathname}) => {
     >
       <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Edu</span></span>}>
         <SubMenu key="g1" title={<span><Icon type="appstore" /><span>Directory</span></span>}>
-          <Menu.Item key="1">
-            <Role roles={["user", "admin"]}>
-              <Link href="/edu/ages"><a>Ages</a></Link>
-            </Role>
-          </Menu.Item>          
-          <Menu.Item key="2">
-            <Role roles={["admin"]}>
+        <Role roles={["user", "admin"]} key="1">
+          <Menu.Item>
+            <Link href="/edu/ages"><a>Ages</a></Link>
+          </Menu.Item>  
+          </Role>        
+          <Role roles={["admin"]} key="2">
+            <Menu.Item>
               <Link href="/edu/classes"><a>Classes</a></Link>
-            </Role>
-          </Menu.Item>
+            </Menu.Item>
+          </Role>
           <Menu.Item key="3">
           <Link href="/edu/school_years"><a>School Years</a></Link>
           </Menu.Item>
