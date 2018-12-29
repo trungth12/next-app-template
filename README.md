@@ -1,0 +1,3 @@
+# Deployments
+
+## Generate JWT Secret
