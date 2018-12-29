@@ -3,3 +3,5 @@
 ## Generate JWT Secret
 
 Go to [this](https://mkjwk.org/)
+
+Choose SH
