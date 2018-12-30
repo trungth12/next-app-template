@@ -5,21 +5,18 @@ import {NetworkWifi} from 'styled-icons/material/NetworkWifi.cjs'
 import {Wifi} from 'styled-icons/fa-solid/Wifi.cjs'
 import {WifiOff} from 'styled-icons/feather/WifiOff.cjs'
 import Login from 'next-app-store/lib/google-login'
-import Logout from 'next-app-store/lib/google-logout'
 import {connect} from 'react-redux'
 import {inspect} from 'util'
+import {withRouter} from 'next/router'
 
 class App extends React.Component {
-  state = {
-    current: 'home',
+  static getDerivedStateFromProps(props, state) {
+    const {pathname} = props.router
+    let current = 'home'
+    if (pathname === '/about') current = 'about'
+    return {current}
   }
 
-  handleClick = (e) => {
-    console.log('click ', e);
-    this.setState({
-      current: e.key,
-    });
-  }
 
   onLoginFailure = (res) => {
     console.log(inspect(res))
@@ -41,7 +38,7 @@ class App extends React.Component {
         <Menu.Item key="home">
           <Link href="/"><a>Home</a></Link>
         </Menu.Item>
-        <Menu.Item key="app">
+        <Menu.Item key="about">
           <Link href="/about"><a>About</a></Link>
         </Menu.Item>
         <Menu.Item key="wifi">
@@ -79,4 +76,4 @@ export default connect(
     onLoginSuccess: dispatch.auth.login,
     onLogoutSuccess: dispatch.auth.logout,
   })
-)(App)
+)(withRouter(App))
