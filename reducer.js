@@ -30,7 +30,7 @@ const defaultReducer = ({cookies}) => {
       language,
       setLanguage: (state, payload) => {
         cookies.set('language', payload)
-        state.language = payload
+        location.reload()
       }
     },
     error: {

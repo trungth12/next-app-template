@@ -8,12 +8,13 @@ import Login from 'next-app-store/lib/google-login'
 import {connect} from 'react-redux'
 import {inspect} from 'util'
 import {withRouter} from 'next/router'
+import LanguageChooser from './language_chooser'
 
 class App extends React.Component {
   state = {
     current: 'home'
   }
-  
+
   static getDerivedStateFromProps(props, state) {
     const {pathname} = props.router
     let current = 'home'
@@ -66,6 +67,9 @@ class App extends React.Component {
             onLoginFailure={this.onLoginFailure}
           />
         </Menu.Item>}
+        <Menu.Item>
+          <LanguageChooser />
+        </Menu.Item>
       </Menu>
     );
   }
