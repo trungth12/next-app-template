@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-const Role = ({roles, currentRole, children, currentUser, ...rest}) => {
+const Role = ({roles = ["anonymous"], currentRole, children, currentUser, ...rest}) => {
   if (!roles.includes(currentRole || !currentUser)) {
     return null
   } else {

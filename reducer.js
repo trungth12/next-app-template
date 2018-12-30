@@ -42,7 +42,8 @@ const defaultReducer = ({cookies}) => {
           const {token} = resp.data
           console.log(`Token: ${token}`)
           cookies.set('token', token)
-          dispatch.auth.tokenSaved(token)
+          //dispatch.auth.tokenSaved(token)
+          location.reload()
         } catch (err) {
           console.log(inspect(err))
         }
@@ -50,14 +51,11 @@ const defaultReducer = ({cookies}) => {
       logout: effect(async (dispatch, payload, getState) => {
         cookies.remove('token')
         cookies.remove('role')
-        dispatch.auth.resetUser()
+        location.reload()
       }),
       resetUser: (state, payload) => {
         state.currentRole = null
         state.currentUser = null
-      },
-      tokenSaved: (state, payload) => {
-        state.token = payload
       },
       setRole: (state, payload) => {
         cookies.set('role', payload)

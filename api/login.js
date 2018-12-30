@@ -15,6 +15,7 @@ const createHasuraJwtClaim = ({
     "sub": userId,
     "name": userName,
     "admin": admin,
+    "roles": roles,
     "iat": new Date().getTime() / 1000,
     "https://hasura.io/jwt/claims": {
       "x-hasura-allowed-roles": roles,

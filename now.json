@@ -39,5 +39,8 @@
   "env": {
     "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
     "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret"
+  },
+  "github": {
+    "silent": true
   }
 }

@@ -3,6 +3,11 @@ import {connect} from 'react-redux'
 import Role from './role'
 const RolesChooser = ({currentRole, setRole, currentUser}) => {
   if (currentUser) {
+    const radios = currentUser.roles.map(item => {
+      return (
+        <Radio.Button value={item}>{item}</Radio.Button>
+      )
+    })
     return (
       <Role
           roles={currentUser.roles}
@@ -14,8 +19,7 @@ const RolesChooser = ({currentRole, setRole, currentUser}) => {
             buttonStyle="solid"
             onChange={(e) => setRole(e.target.value)}
           >
-            <Radio.Button value="user">User</Radio.Button>
-            <Radio.Button value="admin">Admin</Radio.Button>
+            {radios}
           </Radio.Group>
         </div>
         </div>
