@@ -11,7 +11,7 @@ msgstr ""
 #: layouts/sider.js:25
 #, fuzzy
 msgid "Ages"
-msgstr "Lứa tuổi"
+msgstr "Nhóm tuổi"
 
 #: layouts/sider.js:52
 msgid "Admissions"
@@ -19,7 +19,7 @@ msgstr "Tuyển sinh"
 
 #: components/edu/ages.js:66
 msgid "Age Name"
-msgstr "Tên tuổi"
+msgstr "Lứa tuổi"
 
 #: layouts/sider.js:60
 msgid "Attendance"
@@ -35,7 +35,7 @@ msgstr "Các lớp học"
 
 #: layouts/sider.js:46
 msgid "Classrooms"
-msgstr "Lớp học"
+msgstr "Phòng học"
 
 #: layouts/sider.js:22
 msgid "Directory"
@@ -67,11 +67,11 @@ msgstr "Sinh viên"
 
 #: layouts/sider.js:62
 msgid "Students Attendance"
-msgstr "Học sinh đi học"
+msgstr "Bé đang học"
 
 #: layouts/sider.js:67
 msgid "Students Timetables"
-msgstr "Thời khóa biểu của sinh viên"
+msgstr "Thời khóa biểu của bé"
 
 #: layouts/sider.js:54
 msgid "Teacher Admission"
@@ -79,7 +79,7 @@ msgstr "Tuyển sinh giáo viên"
 
 #: layouts/sider.js:43
 msgid "Terms"
-msgstr "Điều kiện"
+msgstr "Giai đoạn"
 
 #: components/edu/ages.js:77
 msgid "To Month"

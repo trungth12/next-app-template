@@ -19,10 +19,10 @@ const Page = () => {
   )
 }
 
-Page.getInitialConfig = async ({cookies}) => {
+Page.getInitialConfig = async ({cookies}) => {  
   const language = cookies.get('language')
   let catalogs = {}
-  if (language) {
+  if (language && language !== 'en') {
     const langCatalogs = await import(`../locales/${language}/messages`)
     catalogs = {
       [language]: langCatalogs
