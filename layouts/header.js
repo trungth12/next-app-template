@@ -10,6 +10,10 @@ import {inspect} from 'util'
 import {withRouter} from 'next/router'
 
 class App extends React.Component {
+  state = {
+    current: 'home'
+  }
+  
   static getDerivedStateFromProps(props, state) {
     const {pathname} = props.router
     let current = 'home'

@@ -11,6 +11,12 @@ const defaultReducer = ({cookies}) => {
 
   const token = cookies.get('token')
   const currentRole = cookies.get('role')
+  
+  if (!cookies.get('language')) {
+    cookies.set('language', 'en')
+  }
+
+  const language = cookies.get('language')
 
   return {
     websocket: {
@@ -20,8 +26,10 @@ const defaultReducer = ({cookies}) => {
       }
     },
     i18n: {
-      language: 'en',
+      supportedLanguages: ["en", "vi"],
+      language,
       setLanguage: (state, payload) => {
+        cookies.set('language', payload)
         state.language = payload
       }
     },

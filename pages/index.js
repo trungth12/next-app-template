@@ -19,12 +19,25 @@ const Page = () => {
   )
 }
 
-Page.getInitialConfig = async (ctx) => ({
-  redux: 'REDUX_STORE_INDEX',
-  apollo: {
-    edu: 'edu-1.herokuapp.com/v1alpha1/graphql'
+Page.getInitialConfig = async ({cookies}) => {
+  const language = cookies.get('language')
+  let catalogs = {}
+  if (language) {
+    const langCatalogs = await import(`../locales/${language}/messages`)
+    catalogs = {
+      [language]: langCatalogs
+    }
   }
-})
+  return {
+    language,
+    catalogs,
+    redux: 'REDUX_STORE_INDEX',
+    apollo: {
+      edu: 'edu-1.herokuapp.com/v1alpha1/graphql'
+    }
+  }
+}
+
 Page.getInitialStore = ({cookies}) => {
   const shareReducer = defaultReducer({cookies})
   return ({

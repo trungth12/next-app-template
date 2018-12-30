@@ -2,6 +2,7 @@ import { Menu, Icon, Button } from 'antd';
 import {connect} from 'react-redux'
 import Link from 'next/link'
 import Role from './role'
+import { Trans} from "@lingui/macro"
 
 const SubMenu = Menu.SubMenu;
 const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
@@ -17,53 +18,53 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
       mode="inline"
       inlineCollapsed={inlineCollapsed}
     >
-      <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Edu</span></span>}>
-        <SubMenu key="g1" title={<span><Icon type="appstore" /><span>Directory</span></span>}>
+      <SubMenu key="sub1" title={<span><Icon type="mail" /><span><Trans>Edu</Trans></span></span>}>
+        <SubMenu key="g1" title={<span><Icon type="appstore" /><span><Trans>Directory</Trans></span></span>}>
         <Role roles={["user", "admin"]} key="1">
           <Menu.Item>
-            <Link href="/edu/ages"><a>Ages</a></Link>
+            <Link href="/edu/ages"><a><Trans>Ages</Trans></a></Link>
           </Menu.Item>  
           </Role>        
           <Role roles={["admin"]} key="2">
             <Menu.Item>
-              <Link href="/edu/classes"><a>Classes</a></Link>
+              <Link href="/edu/classes"><a><Trans>Classes</Trans></a></Link>
             </Menu.Item>
           </Role>
           <Menu.Item key="3">
-          <Link href="/edu/school_years"><a>School Years</a></Link>
+          <Link href="/edu/school_years"><a><Trans>School Years</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="4">
-          <Link href="/edu/semesters"><a>Semester</a></Link>
+          <Link href="/edu/semesters"><a><Trans>Semester</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="5">
-          <Link href="/edu/weeks"><a>Weeks</a></Link>
+          <Link href="/edu/weeks"><a><Trans>Weeks</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="6">
-          <Link href="/edu/terms"><a>Terms</a></Link>
+          <Link href="/edu/terms"><a><Trans>Terms</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="7">
-            <Link href="/edu/classrooms"><a>Classrooms</a></Link>
+            <Link href="/edu/classrooms"><a><Trans>Classrooms</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="8">
-            <Link href="/edu/students"><a>Students</a></Link>
+            <Link href="/edu/students"><a><Trans>Students</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
-        <SubMenu key="g2" title={<span><Icon type="appstore" /><span>Admissions</span></span>}>
+        <SubMenu key="g2" title={<span><Icon type="appstore" /><span><Trans>Admissions</Trans></span></span>}>
           <Menu.Item key="9">
-          <Link href="/edu/class_teachers"><a>Teacher Admission</a></Link>
+          <Link href="/edu/class_teachers"><a><Trans>Teacher Admission</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="10">
-          <Link href="/edu/class_enrollments"><a>Student Admission</a></Link>
+          <Link href="/edu/class_enrollments"><a><Trans>Student Admission</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
-        <SubMenu key="g3" title={<span><Icon type="appstore" /><span>Attendance</span></span>}>
+        <SubMenu key="g3" title={<span><Icon type="appstore" /><span><Trans>Attendance</Trans></span></span>}>
           <Menu.Item key="11">
-            <Link href="/edu/class_attendances"><a>Students Attendance</a></Link>
+            <Link href="/edu/class_attendances"><a><Trans>Students Attendance</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
-        <SubMenu key="g4" title={<span><Icon type="appstore" /><span>Calendar</span></span>}>
+        <SubMenu key="g4" title={<span><Icon type="appstore" /><span><Trans>Calendar</Trans></span></span>}>
         <Menu.Item key="12">
-            <Link href="/edu/timetables"><a>Students Timetables</a></Link>
+            <Link href="/edu/timetables"><a><Trans>Students Timetables</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
       </SubMenu>

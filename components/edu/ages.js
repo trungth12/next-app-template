@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import {query, subscription} from '../../graphql/edu/ages.gql'
 import withQuery from 'next-app-store/lib/with-query'
 import {connect} from 'react-redux'
+import { Trans} from "@lingui/macro"
 
 const Search = Input.Search;
 
@@ -62,18 +63,18 @@ const sorter = (a, b) => {
 }
 const Test = ({sche_ages}) => {
   const columns = [{
-    title: 'Age Name',
+    title: <Trans>Age Name</Trans>,
     dataIndex: 'age_name',
     key: 'age_name',
     defaultSortOrder: 'descend',
     sorter,
   }, {
-    title: 'From month',
+    title: <Trans>From month</Trans>,
     dataIndex: 'from_month',
     key: 'from_month',
     sorter,
   }, {
-    title: 'To Month',
+    title: <Trans>To Month</Trans>,
     dataIndex: 'to_month',
     key: 'to_month',
     sorter,
@@ -81,7 +82,7 @@ const Test = ({sche_ages}) => {
   const pagination = {position: 'both'}
   return (
     <div>
-      <h1>Ages</h1>
+      <h1><Trans>Ages</Trans></h1>
       <EnhancedToolbar data={sche_ages} columns={columns} />
       <br/>
       <Table 
