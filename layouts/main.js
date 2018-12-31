@@ -1,9 +1,9 @@
 import { Layout } from 'antd';
 import {connect} from 'react-redux';
-import RolesChooser from './roles_chooser';
+import { Row, Col } from 'antd';
 
 const {
-  Header, Footer, Sider, Content, Alert
+  Header, Footer, Alert
 } = Layout;
 
 const Main = ({header = null, sider, children, errorMessage, closeErrorMessage}) => {
@@ -25,13 +25,14 @@ const Main = ({header = null, sider, children, errorMessage, closeErrorMessage})
       <Header style={{backgroundColor: 'white'}}>{header}</Header>
       {alert}
       <Layout style={{backgroundColor: 'white'}}>
-        <Sider style={{backgroundColor: 'white'}}>{sider}</Sider>
-        <Layout style={{backgroundColor: 'white'}}>
-        <Content style={{margin: '6px'}}>
-          <RolesChooser />          
-          {children}
-        </Content>
-        </Layout>
+      <Row>
+      <Col span={6}>
+        {sider}
+      </Col>
+      <Col span={18}>
+        {children}
+      </Col>
+      </Row>                
       </Layout>
       <Footer style={{backgroundColor: 'white'}}>Footer</Footer>
     </Layout>

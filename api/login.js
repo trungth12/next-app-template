@@ -2,6 +2,7 @@ const { json, send, createError, run } = require('micro')
 const fetch = require('isomorphic-unfetch')
 const { query } = require('graphqurl');
 const jwt = require('jsonwebtoken')
+const cookie = require('cookie');
 /*
 https://mkjwk.org/
 */
@@ -86,6 +87,10 @@ const login = async (req, res) => {
       if (admin) roles.push("admin")
       const claim = createHasuraJwtClaim({userId:id, admin, userName, roles})
       const jwtToken = jwt.sign(claim, process.env.HASURA_GRAPHQL_JWT_SECRET)      
+      res.setHeader('Set-Cookie', cookie.serialize('token', String(jwtToken), {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 7 // 1 week
+      }));
       send(res, 200, { token: jwtToken })
     } else {
       send(res, response.status, response.statusText)

@@ -5,7 +5,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Ihs\n"
-"Language: vi\n"
+"Language: vi-sider\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
@@ -16,10 +16,6 @@ msgstr ""
 #: layouts/sider.js:52
 msgid "Admissions"
 msgstr "Tuyển sinh"
-
-#: components/edu/ages.js:66
-msgid "Age Name"
-msgstr "Lứa tuổi"
 
 #: components/edu/ages.js:85
 #: layouts/sider.js:25
@@ -49,10 +45,6 @@ msgstr "Danh mục"
 #: layouts/sider.js:21
 msgid "Edu"
 msgstr "Giáo sư"
-
-#: components/edu/ages.js:72
-msgid "From month"
-msgstr "Từ tháng"
 
 #: layouts/sider.js:34
 msgid "School Years"
@@ -85,10 +77,6 @@ msgstr "Tuyển sinh giáo viên"
 #: layouts/sider.js:43
 msgid "Terms"
 msgstr "Giai đoạn"
-
-#: components/edu/ages.js:77
-msgid "To Month"
-msgstr "Đến tháng"
 
 #: layouts/sider.js:40
 msgid "Weeks"

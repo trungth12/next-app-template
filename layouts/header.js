@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import {inspect} from 'util'
 import {withRouter} from 'next/router'
 import LanguageChooser from './language_chooser'
+import RolesChooser from './roles_chooser'
 
 class App extends React.Component {
   state = {
@@ -69,6 +70,9 @@ class App extends React.Component {
         </Menu.Item>}
         <Menu.Item>
           <LanguageChooser />
+        </Menu.Item>
+        <Menu.Item>
+          <RolesChooser />
         </Menu.Item>
       </Menu>
     );

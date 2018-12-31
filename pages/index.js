@@ -7,6 +7,23 @@ import Layout from '../layouts/main'
 import Sider from '../layouts/sider'
 import Header from '../layouts/header'
 import defaultReducer from '../reducer'
+
+const mergeCatalogs = (language, catalogs) => {
+  let cats = {
+    [language]: {
+      languageData: {},
+      messages: {}
+    }
+  }
+  catalogs.forEach(it => {
+    cats[language].messages = {
+      ...cats[language].messages,
+      ...it.messages
+    }
+  })
+  return cats
+}
+
 const Page = () => {
   return (
     <Layout
@@ -20,14 +37,13 @@ const Page = () => {
 }
 
 Page.getInitialConfig = async ({cookies}) => {  
-  const language = cookies.get('language')
-  let catalogs = {}
-  if (language && language !== 'en') {
-    const langCatalogs = await import(`../locales/${language}/messages`)
-    catalogs = {
-      [language]: langCatalogs
-    }
+  if (typeof(cookies.get('language')) === 'undefined') {
+    cookies.set('language', 'en')
   }
+  const language = cookies.get('language')
+  const siderCatalogs = await import(`../locales/${language}-sider/messages`)
+  const eduAgesCatalogs = await import(`../locales/${language}-edu-ages/messages`)
+  const catalogs = mergeCatalogs(language, [siderCatalogs, eduAgesCatalogs])
   return {
     language,
     catalogs,

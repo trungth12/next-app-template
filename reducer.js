@@ -1,21 +1,10 @@
 import { effect } from 'easy-peasy'; // 👈 import the helper
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
-
-import {inspect} from 'util'
 const defaultReducer = ({cookies}) => {
   const currentUser = jwt.decode(cookies.get('token'))
-  if (currentUser) {
-    cookies.set('role', "user")
-  }
-
   const token = cookies.get('token')
-  const currentRole = cookies.get('role')
-  
-  if (!cookies.get('language')) {
-    cookies.set('language', 'en')
-  }
-
+  const currentRole = cookies.get('role')    
   const language = cookies.get('language')
 
   return {
@@ -29,7 +18,7 @@ const defaultReducer = ({cookies}) => {
       supportedLanguages: ["en", "vi"],
       language,
       setLanguage: (state, payload) => {
-        cookies.set('language', payload)
+        cookies.set('language', payload, { path: '/' })
         location.reload()
       }
     },
@@ -49,26 +38,30 @@ const defaultReducer = ({cookies}) => {
           const resp = await axios.post('/api/login', {id_token})
           const {token} = resp.data
           console.log(`Token: ${token}`)
-          cookies.set('token', token)
           //dispatch.auth.tokenSaved(token)
-          location.reload()
+          location.replace('/')
         } catch (err) {
-          console.log(inspect(err))
+          dispatch.error.setError(err)
         }
       }),
       logout: effect(async (dispatch, payload, getState) => {
-        cookies.remove('token')
-        cookies.remove('role')
-        location.reload()
+        try {
+          await axios.post('/api/logout')
+          //dispatch.auth.tokenSaved(token)
+          location.replace('/')
+        } catch (err) {
+          dispatch.error.setError(err)
+        }
       }),
-      resetUser: (state, payload) => {
-        state.currentRole = null
-        state.currentUser = null
-      },
-      setRole: (state, payload) => {
-        cookies.set('role', payload)
-        state.currentRole = payload
-      }
+      setRole: effect(async (dispatch, payload, getState) => {
+        try {
+          await axios.post('/api/switch_role', {role: payload})
+          //dispatch.auth.tokenSaved(token)
+          location.replace('/')
+        } catch (err) {
+          dispatch.error.setError(err)
+        }
+      })
     }
   }
 }
