@@ -1,8 +1,16 @@
+const jwt_secret = process.env.HASURA_GRAPHQL_JWT_SECRET || '{"type":"HS256","key":"ae4daeb1e8bc693448bafb6b2a19f3dabff5a8fd69f0314932ed5d7775f3a0d8"}'
+const hasura_secret = process.env.HASURA_GRAPHQL_ACCESS_KEY || 'tanphong'
+const domain = process.env.DOMAIN || 'localhost'
 const { json, send, createError, run } = require('micro')
 const fetch = require('isomorphic-unfetch')
 const { query } = require('graphqurl');
 const jwt = require('jsonwebtoken')
 const cookie = require('cookie');
+
+/*
+sample:
+"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc5NzhhOTEzNDcyNjFhMjkxYmQ3MWRjYWI0YTQ2NGJlN2QyNzk2NjYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMzQ4MjI3MDM1NzA4LXRlcjducjNja29rNzdqbjA4aDFzanRpcmNubzU5amtqLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMzQ4MjI3MDM1NzA4LXRlcjducjNja29rNzdqbjA4aDFzanRpcmNubzU5amtqLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA2NDQzNDg0ODM0NTE4NjY1NjMyIiwiZW1haWwiOiJjaGVja3JhaXNlcjExQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoieWdSN1psODVNR01qT2d2SmtxN3FRZyIsIm5hbWUiOiJIYW1tZXIgSm9obiIsInBpY3R1cmUiOiJodHRwczovL2xoNS5nb29nbGV1c2VyY29udGVudC5jb20vLUhjb3lzR21sQlZFL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUFBL0FLeHJ3Y2JhNmpkak5odHRkRnpzZ09ZcWpzYzBtZE5scXcvczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6IkhhbW1lciIsImZhbWlseV9uYW1lIjoiSm9obiIsImxvY2FsZSI6InZpIiwiaWF0IjoxNTQ2MjQ5MjE5LCJleHAiOjE1NDYyNTI4MTksImp0aSI6IjhjZmEwYzc0YTMxYWI4YTljMjRjMTI0YjhjMjEwM2UyNjQ3M2QyNTUifQ.peOnqb9aIBJcloR0MNnk8lq8DhRVFkllr_SDIqzRQyY0fZKpx5EMlejuVidz0BvjYLsnSMHokv9eCNUrK28yT1my2orKCq8KlXVvFZVcXcQoHiLlt6KlG8DN1GXK1t52QLOMh5vIAkW4qVIUP5w-dnzVSEi6L8OBRCxixx8TsIXTvqgR3EUp5eWEkgM8gbzxzUKIH0Xud2Vr1GH-Wpa-pKrPKfEc2A1m4PtsTjlDxpcSo01ji7eK4kiwI1NKY6SmTJUYjvmzup7v7JxOoOzB7fKUpTvep_AZiqwfOOGGx2es-ey_STko6ZSCdNSCDPy9wkCjAQmHqC-4ik1OYO_56g"
+*/
 /*
 https://mkjwk.org/
 */
@@ -55,6 +63,9 @@ mutation CreateUser($email:String!,$name:String!,$imageUrl:String,$firstName:Str
 }
 */
 const login = async (req, res) => {
+  if (req.method !== 'POST') {
+    send(res, 200, {})
+  }
   const { id_token } = await json(req)
   const googleVerifyUri = `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${id_token}`
 
@@ -79,18 +90,23 @@ const login = async (req, res) => {
         variables,
         endpoint: 'https://edu-1.herokuapp.com/v1alpha1/graphql',
         headers: {
-          'X-Hasura-Access-Key': process.env.HASURA_GRAPHQL_ACCESS_KEY,
+          'X-Hasura-Access-Key': hasura_secret,
         }
       })
       const {id, admin, userName} = data.insert_sche_users.returning[0]
       const roles = ["user"]
       if (admin) roles.push("admin")
       const claim = createHasuraJwtClaim({userId:id, admin, userName, roles})
-      const jwtToken = jwt.sign(claim, process.env.HASURA_GRAPHQL_JWT_SECRET)      
-      res.setHeader('Set-Cookie', cookie.serialize('token', String(jwtToken), {
+      const jwtToken = jwt.sign(claim, jwt_secret)      
+      const cookieOptions = {
+        domain,
+        path: '/',
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 7 // 1 week
-      }));
+      }
+      const tokenCookie = cookie.serialize('token', String(jwtToken), cookieOptions)
+      const roleCookie = cookie.serialize('role', String("user"), cookieOptions)
+      res.setHeader('Set-Cookie', [tokenCookie, roleCookie]);      
       send(res, 200, { token: jwtToken })
     } else {
       send(res, response.status, response.statusText)
@@ -101,4 +117,12 @@ const login = async (req, res) => {
 }
 
 const handler = (req, res) => run(req, res, login)
+/*
+
+if (!process.env.NOW_REGION) {
+  var http = require('http');
+  http.createServer(handler).listen(3001);
+}
+*/
+
 module.exports = handler

@@ -17,7 +17,7 @@ const Page = () => {
 }
 
 Page.getInitialConfig = async ({cookies}) => {
-  const language = cookies.get('language')
+  const language = cookies ? cookies.language : 'en'
   let catalogs = {}
   if (language && language !== 'en') {
     const siderCatalogs = await import(`../../locales/${language}-sider/messages`)

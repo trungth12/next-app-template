@@ -5,9 +5,6 @@
 	  {
       "src": "next.config.js", "use": "@now/next",
       "config": { "maxLambdaSize": "100mb" }
-    },
-    {
-      "src": "api/*.js", "use": "@now/node"
     }
 	],
 	"routes": [	
@@ -25,21 +22,15 @@
 			"cache-control": "max-age=31536000"
 		  },
 		  "dest": "/_next/$1"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "api/$1.js"
     }
   ],
   "build": {
     "env": {
-      "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
-      "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret"
+      "DOMAIN": "ihs.edu.vn"
     }
   },
   "env": {
-    "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
-    "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret"
+    "DOMAIN": "ihs.edu.vn"
   },
   "github": {
     "silent": true

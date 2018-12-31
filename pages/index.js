@@ -37,10 +37,7 @@ const Page = () => {
 }
 
 Page.getInitialConfig = async ({cookies}) => {  
-  if (typeof(cookies.get('language')) === 'undefined') {
-    cookies.set('language', 'en')
-  }
-  const language = cookies.get('language')
+  const language = cookies && cookies.language ? cookies.language : 'en'
   const siderCatalogs = await import(`../locales/${language}-sider/messages`)
   const eduAgesCatalogs = await import(`../locales/${language}-edu-ages/messages`)
   const catalogs = mergeCatalogs(language, [siderCatalogs, eduAgesCatalogs])
@@ -59,16 +56,14 @@ Page.getInitialStore = ({cookies}) => {
   return ({
     ...shareReducer,
     layouts: {
-      inlineCollapsed: (cookies.get('sider') === 'true') || false,
+      inlineCollapsed: false,
       toggleCollapsed: (state, payload) => {
-        cookies.set('sider', payload)
         state.inlineCollapsed = payload
       }
     },
     test: {
-      data: cookies.get('hello') || 'Hello World 1',
+      data: 'Hello World 1',
       changeText: (state, payload) => {
-        cookies.set('hello', 'Leuleu')
         state.data = 'Leuleu'
       }
     }

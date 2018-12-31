@@ -5,7 +5,7 @@ import initializeStore from 'next-app-store/lib/utils/store'
 import initApollo from 'next-app-store/lib/utils/init-apollo'
 import MobileDetect from 'mobile-detect'
 import PageContext from 'next-app-store/lib/context'
-import Cookies from 'universal-cookie'
+import cookie from 'cookie'
 
 const getShareConfig = async (ctx) => {
   const {req} = ctx
@@ -41,27 +41,17 @@ function objectMap(object, mapFn) {
 }
 const isServer = !process.browser
 
-function getOrCreateStore ({initialReducer, initialReduxState, cookies}, path) {
+function getOrCreateStore ({initialReducer, initialReduxState}, path) {
   // Always make a new store if server, otherwise state is shared between requests
   if (isServer) {
     return initializeStore({initialReducer, initialState: initialReduxState})
   }
-  if (!window.ALL_PATHS) {
-    window.ALL_PATHS = []
-  }
+  
   // Create store if unavailable on the client and set it on the window object
   if (!window[path]) {        
     window[path] = initializeStore({initialReducer, initialState: initialReduxState})    
-    window.ALL_PATHS.push(path)
   }
-  cookies.addChangeListener( ({name, value}) => {
-    if (name === 'role') {      
-      window.ALL_PATHS.forEach(it => {
-        window[it].dispatch.root.resetStore()
-      })
-      //log(`${path}: ${window[path].getState().auth.currentRole}`)
-    }      
-  })
+  
   return window[path]
 }
 const withAppStore = Page => {
@@ -69,8 +59,11 @@ const withAppStore = Page => {
     static async getInitialProps(ctx) {    
       const {req} = ctx        
       const {isMobile} = await getShareConfig(ctx)
-      let cookieStr = req ? req.headers.cookie : document.cookie
-      const cookies = new Cookies(cookieStr)
+      if (req) {
+
+      }
+      let cookieStr = req ? req.headers.cookie : window.__NEXT_DATA__.props.pageProps.cookieStr
+      const cookies = cookie.parse(cookieStr);
       ctx.cookies = cookies
       let reduxStore = null
       let apolloClients = null
@@ -90,7 +83,7 @@ const withAppStore = Page => {
           log('starting getInitialStore')
 
           const initialReducer = Page.getInitialStore(ctx)
-          reduxStore = getOrCreateStore({initialReducer, cookies}, redux)
+          reduxStore = getOrCreateStore({initialReducer}, redux)
           ctx.reduxStore = reduxStore
           log('ending getInitialStore')          
         }
@@ -147,7 +140,7 @@ const withAppStore = Page => {
 
       if (initialReduxState) {
         const initialReducer = Page.getInitialStore(ctx)
-        this.reduxStore = getOrCreateStore({initialReducer, initialReduxState, cookies:ctx.cookies}, reduxStorePath)
+        this.reduxStore = getOrCreateStore({initialReducer, initialReduxState}, reduxStorePath)
       }
 
       if (items) {

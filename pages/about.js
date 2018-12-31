@@ -28,16 +28,14 @@ Page.getInitialStore = ({cookies}) => {
   return ({
     ...shareReducer,
     layouts: {
-      inlineCollapsed: (cookies.get('sider') === 'true') || false,
+      inlineCollapsed: true,
       toggleCollapsed: (state, payload) => {
-        cookies.set('sider', payload)
         state.inlineCollapsed = payload
       }
     },
     test: {
-      data: cookies.get('hello') || 'Hello World 1',
+      data: 'Hello World 1',
       changeText: (state, payload) => {
-        cookies.set('hello', 'Leuleu' + state.inlineCollapsed)
         state.data = 'Leuleu' + state.inlineCollapsed
       }
     }

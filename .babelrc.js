@@ -3,7 +3,8 @@
 const env = {
   'process.env.NOW_REGION': process.env.NOW_REGION,
   'process.env.NODE_ENV': process.env.NODE_ENV,
-  'process.env.GOOGLE_CLIENT_ID': '348227035708-ter7nr3ckok77jn08h1sjtircno59jkj.apps.googleusercontent.com'
+  'process.env.GOOGLE_CLIENT_ID': '348227035708-ter7nr3ckok77jn08h1sjtircno59jkj.apps.googleusercontent.com',
+  'process.env.DOMAIN': 'ihs.edu.vn',
 }
 
 const babelConfig = require('next-web-config/babel')

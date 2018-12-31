@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "alias": ["api.ihs.edu.vn"],
+	"builds": [
+    {
+      "src": "*.js", "use": "@now/node"
+    }
+	],
+	"routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://web.ihs.edu.vn",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept",
+        "Access-Control-Allow-Credentials": "true"
+      }
+    }
+  ],
+  "build": {
+    "env": {
+      "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
+      "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret",
+      "DOMAIN": ".ihs.edu.vn"
+    }
+  },
+  "env": {
+    "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
+    "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret",
+    "DOMAIN": ".ihs.edu.vn"
+  },
+  "github": {
+    "silent": true
+  }
+}
