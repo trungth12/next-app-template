@@ -1,6 +1,7 @@
 {
   "version": 2,
   "alias": ["api.ihs.edu.vn"],
+  "name": "api",
 	"builds": [
     {
       "src": "*.js", "use": "@now/node"
@@ -21,12 +22,14 @@
     "env": {
       "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
       "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret",
+      "ACCOUNTS_ENDPOINT": "https://accounts-1.herokuapp.com/v1alpha1/graphql",
       "DOMAIN": ".ihs.edu.vn"
     }
   },
   "env": {
     "HASURA_GRAPHQL_ACCESS_KEY": "@hasura_graphql_access_key",
     "HASURA_GRAPHQL_JWT_SECRET": "@hasura_graphql_jwt_secret",
+    "ACCOUNTS_ENDPOINT": "https://accounts-1.herokuapp.com/v1alpha1/graphql",
     "DOMAIN": ".ihs.edu.vn"
   },
   "github": {

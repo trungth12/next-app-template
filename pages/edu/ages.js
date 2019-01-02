@@ -1,68 +1,46 @@
 import withStore from 'next-app-store/lib/with-store'
-import agesQuery from '../../graphql/edu/ages.gql'
-import Ages from '../../components/edu/ages'
-import Layout from '../../layouts/main'
-import Sider from '../../layouts/sider'
-import Header from '../../layouts/header'
 import defaultReducer from '../../reducer'
+import PageWrapper from '../../layouts/page_wrapper'
+import { Row, Col } from 'antd';
+import Ages from '../../components/edu/sche_ages'
+import {query as agesQuery} from '../../components/edu/sche_ages/index.gql'
+/*
+import TestCrm from '../components/test_crm'
+import {query as crmQuery} from '../components/test_crm/index.gql'
+import TestHr from '../components/test'
+import {query as hrQuery} from '../components/test/index.gql'
+*/
+/* ----- */
 const Page = () => {
   return (
-    <Layout
-      header={<Header />}
-      sider={<Sider />}
-    >
-      <Ages />
-    </Layout>
+    <PageWrapper>
+      <Row gutter={16}>
+        <Col className="gutter-row" span={24}>
+          <Ages />
+        </Col>
+      </Row>
+    </PageWrapper>
   )
 }
 
-Page.getInitialConfig = async ({cookies}) => {
-  const language = cookies ? cookies.language : 'en'
-  let catalogs = {}
-  if (language && language !== 'en') {
-    const siderCatalogs = await import(`../../locales/${language}-sider/messages`)
-    const eduAgesCatalogs = await import(`../../locales/${language}-edu-ages/messages`)
-    catalogs = {
-      [language]: {
-        ...siderCatalogs,
-        ...eduAgesCatalogs,
-      }
-    }
+Page.getInitialConfig = async ({language}) => {  
+  const catalogs = {
+    [language]: await import(`../../locales/edu/ages/locales/${language}/messages`)
   }
   return {
-    language,
     catalogs,
     redux: 'REDUX_STORE_EDU_AGES',
     apollo: {
-      edu: 'edu-1.herokuapp.com/v1alpha1/graphql'
+      "edu": "edu-1.herokuapp.com/v1alpha1/graphql",
     }
   }
 }
-Page.getInitialStore = ({cookies}) => {
-  const reducer = defaultReducer({cookies})
-  return ({
-    ...reducer,
-    layouts: {
-      inlineCollapsed: (cookies.get('sider') === 'true') || false,
-      toggleCollapsed: (state, payload) => {
-        cookies.set('sider', payload)
-        state.inlineCollapsed = payload
-      }
-    },
-    test: {
-      data: cookies.get('hello') || 'Hello World 1',
-      changeText: (state, payload) => {
-        cookies.set('hello', 'Leuleu')
-        state.data = 'Leuleu'
-      }
-    }
-  })
-}
+
+Page.getInitialStore = defaultReducer
 
 Page.getInitialApolloState = async ({apolloClients, fetchPolicy}) => {   
-  return Promise.all([
-    apolloClients.edu.query({query: agesQuery, fetchPolicy }),
-  ])
+ return apolloClients.edu.query({query: agesQuery, fetchPolicy})
 }
+
 export default withStore(Page)
 

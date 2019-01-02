@@ -1,1 +1,0 @@
-/* eslint-disable */module.exports={languageData:{"plurals":function(n,ord){if(ord)return n==1?"one":"other";return"other"}},messages:{"Age Name":"L\u1EE9a tu\u1ED5i","Ages":"Nh\xF3m tu\u1ED5i","From month":"T\u1EEB th\xE1ng","To Month":"\u0110\u1EBFn th\xE1ng"}};

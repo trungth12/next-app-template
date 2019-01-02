@@ -1,18 +1,33 @@
 import { effect } from 'easy-peasy'; // 👈 import the helper
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
 const dev = process.env.NODE_ENV !== 'production'
 const apiUrl = dev ? 'http://localhost:3001' : `https://api.${process.env.DOMAIN}`
-const defaultReducer = ({cookies}) => {
-  const currentUser = cookies ? 
-    jwt.decode(cookies.token) : null
-  const token =  cookies ? cookies.token : null
-  const currentRole = cookies ?  cookies.role : null
-  const language = cookies && cookies.language ? cookies.language : 'en'
-
+const defaultReducer = ({
+  language,
+  token,
+  currentUser,
+  currentRole,
+}) => {
+  
   return {
+    config: {
+      timeout: 2000,
+    },
+    theme: {
+      primaryColor: '#1DA57A'
+    },
+    layouts: {      
+      loading: false,
+      inlineCollapsed: true,
+      toggleCollapsed: (state, payload) => {
+        state.inlineCollapsed = payload
+      },
+      setLoading: (state, payload) => {
+        state.loading = payload
+      }
+    },
     websocket: {
-      status: null,
+      status: 'Disconnected',
       setStatus: (state, payload) => {
         state.status = payload
       }
@@ -21,16 +36,22 @@ const defaultReducer = ({cookies}) => {
       supportedLanguages: ["en", "vi"],
       language,
       setLanguage: effect(async (dispatch, payload, getState) => {
-        try {
-          await axios.post(`${apiUrl}/set_language`, {language: payload}, {
-            //AxiosRequestConfig parameter
-            withCredentials: true //correct
-          })
-          //dispatch.auth.tokenSaved(token)
-          location.replace('/')
-        } catch (err) {
-          dispatch.error.setError(err)
-        }
+        const timeout = getState().config.timeout
+        dispatch.layouts.setLoading(true)
+        setTimeout(async () => {
+          try {
+            await axios.post(`${apiUrl}/set_language`, {language: payload}, {
+              //AxiosRequestConfig parameter
+              withCredentials: true //correct
+            })
+            //dispatch.auth.tokenSaved(token)
+            location.replace('/')
+          } catch (err) {          
+            dispatch.error.setError(err.toString())
+            dispatch.layouts.setLoading(false)
+          }
+        }, timeout)
+        
       })
     },
     error: {
@@ -44,47 +65,67 @@ const defaultReducer = ({cookies}) => {
       currentUser,
       currentRole,
       login: effect(async (dispatch, payload, getState) => {
+        const timeout = getState().config.timeout
         const {id_token} = payload.tokenObj
         try {
-          const resp = await axios.post(`${apiUrl}/login`, {id_token}, {
+          dispatch.layouts.setLoading(true)
+          
+          await axios.post(`${apiUrl}/login`, {id_token}, {
             //AxiosRequestConfig parameter
             withCredentials: true //correct
           })
-          const {token} = resp.data
-          console.log(`Token: ${token}`)
-          //dispatch.auth.tokenSaved(token)
-          location.replace('/')
+          setTimeout(() => {
+            //dispatch.auth.tokenSaved(token)
+            location.replace('/')          
+          }, timeout)
+          
         } catch (err) {
-          dispatch.error.setError(err)
+          dispatch.layouts.setLoading(false)
+          dispatch.error.setError(err.toString())
         }
       }),
       logout: effect(async (dispatch, payload, getState) => {
+        const timeout = getState().config.timeout
         try {
+          dispatch.layouts.setLoading(true)
+          
           await axios.post(`${apiUrl}/logout`, {}, {
             //AxiosRequestConfig parameter
             withCredentials: true //correct
           })
-          //dispatch.auth.tokenSaved(token)
           setTimeout(() => {
+            //dispatch.auth.tokenSaved(token)
             location.replace('/')
-          }, 3000)
-          
+          }, timeout)
         } catch (err) {
-          dispatch.error.setError(err)
+          dispatch.layouts.setLoading(false)
+          dispatch.error.setError(err.toString())
         }
       }),
       setRole: effect(async (dispatch, payload, getState) => {
+        const timeout = getState().config.timeout
         try {
+          dispatch.layouts.setLoading(true)
+          
           await axios.post(`${apiUrl}/set_role`, {role: payload}, {
             //AxiosRequestConfig parameter
             withCredentials: true //correct
           })
-          //dispatch.auth.tokenSaved(token)
-          location.replace('/')
+          setTimeout(async () => {
+            //dispatch.auth.tokenSaved(token)
+            location.replace('/')
+          }, timeout)
         } catch (err) {
-          dispatch.error.setError(err)
+          dispatch.layouts.setLoading(false)
+          dispatch.error.setError(err.toString())
         }
       })
+    },
+    test: {
+      data: 'Hello World 1',
+      changeText: (state, payload) => {
+        state.data = 'Leuleu'
+      }
     }
   }
 }

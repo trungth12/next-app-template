@@ -23,7 +23,12 @@ const config = {
   lessLoaderOptions: {
     javascriptEnabled: true,
     modifyVars: {
-      primaryColor: '#22292f'
+      "@primary-color": '#1DA57A'
+    }
+  },
+  exportPathMap: function () {
+    return {
+      '/': { page: '/' }
     }
   }
 }

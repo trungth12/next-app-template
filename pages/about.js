@@ -1,6 +1,4 @@
 import withStore from 'next-app-store/lib/with-store'
-import classesQuery from '../graphql/edu/classes.gql'
-import Classes from '../components/edu/classes'
 import Layout from '../layouts/main'
 import Sider from '../layouts/sider'
 import Header from '../layouts/header'
@@ -12,39 +10,16 @@ const Page = () => {
       header={<Header />}
       sider={<Sider />}
     >
-      <Classes />
+      Hello world
     </Layout>
   )
 }
 
 Page.getInitialConfig = async (ctx) => ({
-  redux: 'REDUX_STORE_INDEX',
-  apollo: {
-    edu: 'edu-1.herokuapp.com/v1alpha1/graphql'
-  }
+  redux: 'REDUX_STORE_ABOUT',
 })
-Page.getInitialStore = ({cookies}) => {
-  const shareReducer = defaultReducer({cookies})
-  return ({
-    ...shareReducer,
-    layouts: {
-      inlineCollapsed: true,
-      toggleCollapsed: (state, payload) => {
-        state.inlineCollapsed = payload
-      }
-    },
-    test: {
-      data: 'Hello World 1',
-      changeText: (state, payload) => {
-        state.data = 'Leuleu' + state.inlineCollapsed
-      }
-    }
-  })
-}
-Page.getInitialApolloState = async ({apolloClients, fetchPolicy}) => {   
-  return Promise.all([
-    apolloClients.edu.query({query: classesQuery, fetchPolicy }),
-  ])
-}
+
+Page.getInitialStore = defaultReducer
+  
 export default withStore(Page)
 

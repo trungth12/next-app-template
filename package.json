@@ -7,9 +7,11 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "export": "next build && next export",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
-    "compile": "lingui compile"
+    "compile": "lingui compile",
+    "deploy": "now && now alias"
   },
   "keywords": [],
   "author": "",
@@ -19,9 +21,8 @@
     "antd": "^3.11.6",
     "axios": "^0.18.0",
     "graphql-tag": "^2.10.0",
-    "jsonwebtoken": "^8.4.0",
     "next": "^7.0.2",
-    "next-app-store": "^1.1.6",
+    "next-app-store": "^1.1.28",
     "next-web-config": "^1.0.7",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

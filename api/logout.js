@@ -9,7 +9,7 @@ const logout = async (req, res) => {
     domain,
     path: '/',
     httpOnly: true,
-    maxAge: 3
+    maxAge: 1
   }
   const tokenCookie = cookie.serialize('token', null, cookieOptions)
   const roleCookie = cookie.serialize('role', null, cookieOptions)

@@ -3,8 +3,7 @@
   "alias": ["web.ihs.edu.vn"],
 	"builds": [
 	  {
-      "src": "next.config.js", "use": "@now/next",
-      "config": { "maxLambdaSize": "100mb" }
+      "src": "next.config.js", "use": "@now/next"
     }
 	],
 	"routes": [	

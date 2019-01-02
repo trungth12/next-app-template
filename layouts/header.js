@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Menu, Button } from 'antd';
+import { Menu, Spin } from 'antd';
 import {NetworkWifi} from 'styled-icons/material/NetworkWifi.cjs'
 import {Wifi} from 'styled-icons/fa-solid/Wifi.cjs'
 import {WifiOff} from 'styled-icons/feather/WifiOff.cjs'
@@ -10,6 +10,7 @@ import {inspect} from 'util'
 import {withRouter} from 'next/router'
 import LanguageChooser from './language_chooser'
 import RolesChooser from './roles_chooser'
+import Button from '../components/button'
 
 class App extends React.Component {
   state = {
@@ -33,7 +34,9 @@ class App extends React.Component {
       onLoginSuccess, 
       isLoggedIn, 
       onLogoutSuccess,
-      webSocketStatus
+      webSocketStatus,
+      loading,
+      primaryColor,
     } = this.props
     return (
       <Menu
@@ -48,9 +51,9 @@ class App extends React.Component {
           <Link href="/about"><a>About</a></Link>
         </Menu.Item>
         <Menu.Item key="wifi">
-          {(webSocketStatus === 'Connecting' || webSocketStatus === 'Reconnecting') && <NetworkWifi size={20} color={'#1890ff'}/>}
-          {webSocketStatus === 'Connected' && <Wifi size={20} color={'#1890ff'}/>}
-          {webSocketStatus === 'Disconnected' && <WifiOff size={20} color={'#1890ff'}/>}
+          {(webSocketStatus === 'Connecting' || webSocketStatus === 'Reconnecting') && <NetworkWifi size={20} color={primaryColor}/>}
+          {webSocketStatus === 'Connected' && <Wifi size={20} color={primaryColor}/>}
+          {webSocketStatus === 'Disconnected' && <WifiOff size={20} color={primaryColor}/>}
         </Menu.Item>
         {isLoggedIn && <Menu.Item key="logout" style={{float: 'right'}}>
           <Button
@@ -74,6 +77,7 @@ class App extends React.Component {
         <Menu.Item>
           <RolesChooser />
         </Menu.Item>
+        {loading && <Menu.Item><Spin /></Menu.Item>}
       </Menu>
     );
   }
@@ -83,6 +87,8 @@ export default connect(
   state => ({
     isLoggedIn: (state.auth.token && state.auth.token !== null),
     webSocketStatus: state.websocket.status,
+    loading: state.layouts.loading,
+    primaryColor: state.theme.primaryColor,
   }),
   dispatch => ({
     onLoginSuccess: dispatch.auth.login,
