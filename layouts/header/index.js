@@ -8,9 +8,10 @@ import Login from 'next-app-store/lib/google-login'
 import {connect} from 'react-redux'
 import {inspect} from 'util'
 import {withRouter} from 'next/router'
-import LanguageChooser from './language_chooser'
-import RolesChooser from './roles_chooser'
-import Button from '../components/button'
+import LanguageChooser from '../language_chooser'
+import RolesChooser from '../roles_chooser'
+import Button from '../../components/button'
+import { Trans} from "@lingui/macro"
 
 class App extends React.Component {
   state = {
@@ -45,10 +46,10 @@ class App extends React.Component {
         mode="horizontal"
       >
         <Menu.Item key="home">
-          <Link href="/"><a>Home</a></Link>
+          <Link href="/"><a><Trans>Home</Trans></a></Link>
         </Menu.Item>
         <Menu.Item key="about">
-          <Link href="/about"><a>About</a></Link>
+          <Link href="/about"><a><Trans>About</Trans></a></Link>
         </Menu.Item>
         <Menu.Item key="wifi">
           {(webSocketStatus === 'Connecting' || webSocketStatus === 'Reconnecting') && <NetworkWifi size={20} color={primaryColor}/>}
@@ -58,14 +59,14 @@ class App extends React.Component {
         {isLoggedIn && <Menu.Item key="logout" style={{float: 'right'}}>
           <Button
             onClick={onLogoutSuccess}
-          >Logout</Button>
+          ><Trans>Logout</Trans></Button>
         </Menu.Item>}
         {!isLoggedIn &&
         <Menu.Item key="login" style={{float: 'right'}}>
           <Login
             clientId={process.env.GOOGLE_CLIENT_ID}
             render={renderProps => (
-              <Button onClick={renderProps.onClick}>Login with Google</Button>
+              <Button onClick={renderProps.onClick}><Trans>Login with Google</Trans></Button>
             )}
             onLoginSuccess={onLoginSuccess}
             onLoginFailure={this.onLoginFailure}

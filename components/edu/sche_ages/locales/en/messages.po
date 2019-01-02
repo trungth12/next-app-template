@@ -18,7 +18,15 @@ msgid "Age Name"
 msgstr ""
 
 #: components/edu/sche_ages/listing.js:65
-msgid "Ages"
+#~ msgid "Ages"
+#~ msgstr ""
+
+#: components/edu/sche_ages/listing.js:65
+msgid "Ages Listing"
+msgstr ""
+
+#: components/edu/sche_ages/listing.js:30
+msgid "Export Excel"
 msgstr ""
 
 #: components/edu/sche_ages/index.columns.js:15

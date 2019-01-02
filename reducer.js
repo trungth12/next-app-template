@@ -1,5 +1,6 @@
 import { effect } from 'easy-peasy'; // 👈 import the helper
 import axios from 'axios'
+import Router from 'next/router'
 const dev = process.env.NODE_ENV !== 'production'
 const apiUrl = dev ? 'http://localhost:3001' : `https://api.${process.env.DOMAIN}`
 const defaultReducer = ({
@@ -46,6 +47,7 @@ const defaultReducer = ({
             })
             //dispatch.auth.tokenSaved(token)
             location.replace('/')
+            //Router.replace('/')
           } catch (err) {          
             dispatch.error.setError(err.toString())
             dispatch.layouts.setLoading(false)
@@ -77,6 +79,7 @@ const defaultReducer = ({
           setTimeout(() => {
             //dispatch.auth.tokenSaved(token)
             location.replace('/')          
+            //Router.replace('/')
           }, timeout)
           
         } catch (err) {
@@ -96,6 +99,7 @@ const defaultReducer = ({
           setTimeout(() => {
             //dispatch.auth.tokenSaved(token)
             location.replace('/')
+            //Router.replace('/')
           }, timeout)
         } catch (err) {
           dispatch.layouts.setLoading(false)
@@ -114,6 +118,7 @@ const defaultReducer = ({
           setTimeout(async () => {
             //dispatch.auth.tokenSaved(token)
             location.replace('/')
+            //Router.replace('/')
           }, timeout)
         } catch (err) {
           dispatch.layouts.setLoading(false)

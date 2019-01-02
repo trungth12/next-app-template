@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Trans} from "@lingui/macro"
 import Button from './button'
 //import NewAge from './ages/new'
-const NewAge = dynamic(import('./form'), {ssr: false})
+const NewForm = dynamic(import('./form'), {ssr: false})
 const Search = Input.Search;
 
 const ExcelDownloader = dynamic(
@@ -27,7 +27,7 @@ const ExcelButton = ({columns, data}) => {
     {({handleExcelDownload}) => {
       return (
         <Button type="primary" onClick={handleExcelDownload}>
-          <Icon type="plus" /> Export Excel
+          <Icon type="plus" /> <Trans>Export Excel</Trans>
         </Button>
       )
     }}
@@ -38,7 +38,7 @@ const ExcelButton = ({columns, data}) => {
 const items = ({data, columns}) => [{
   component: <ExcelButton columns={columns} data={data} />
 }, {
-  component: <NewAge label={<Trans>New Age</Trans>} />
+  component: <NewForm label={<Trans>New Age</Trans>} />
 }]
 
 const Toolbar = ({data, columns}) => (
@@ -62,7 +62,7 @@ const Test = ({data, columns}) => {
   const pagination = {position: 'both'}
   return (
     <div>
-      <h1><Trans>Ages</Trans></h1>
+      <h1><Trans>Ages Listing</Trans></h1>
       <Toolbar data={data} columns={columns} />
       <br/>
       <Table 

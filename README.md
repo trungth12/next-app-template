@@ -62,7 +62,12 @@ query {
     }
   }
 }
-```
-msgcat ./components/edu/sche_ages/locales/en/messages.po ./layouts/sider/locales/en/messages.po --output-file=./locales/edu/ages/locales/en/messages.po
 
-msgcat ./components/edu/sche_ages/locales/vi/messages.po ./layouts/sider/locales/vi/messages.po --output-file=./locales/edu/ages/locales/vi/messages.po
+LOCALE_PATH=./components/edu/sche_class_teachers npm run add-locale en vi
+LOCALE_PATH=./components/edu/sche_class_teachers npm run extract
+LOCALE_PATH=./locales/edu/class_teachers npm run add-locale en vi
+msgcat ./components/edu/sche_class_teachers/locales/en/messages.po ./layouts/sider/locales/en/messages.po ./layouts/header/locales/en/messages.po --output-file=./locales/edu/class_teachers/locales/en/messages.po
+
+msgcat ./components/edu/sche_class_enrollments/locales/vi/messages.po ./layouts/sider/locales/vi/messages.po ./layouts/header/locales/vi/messages.po --output-file=./locales/edu/class_teachers/locales/vi/messages.po
+
+LOCALE_PATH=./locales/edu/class_teachers npm run compile

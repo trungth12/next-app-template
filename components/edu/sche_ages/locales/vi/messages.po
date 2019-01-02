@@ -18,8 +18,16 @@ msgid "Age Name"
 msgstr "Lứa tuổi"
 
 #: components/edu/sche_ages/listing.js:65
-msgid "Ages"
-msgstr "Nhóm tuổi"
+#~ msgid "Ages"
+#~ msgstr "Nhóm tuổi"
+
+#: components/edu/sche_ages/listing.js:65
+msgid "Ages Listing"
+msgstr "Danh sách Nhóm tuổi"
+
+#: components/edu/sche_ages/listing.js:30
+msgid "Export Excel"
+msgstr "Xuất Excel"
 
 #: components/edu/sche_ages/index.columns.js:15
 msgid "From month"

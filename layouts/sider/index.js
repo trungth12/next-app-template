@@ -1,7 +1,6 @@
 import { Menu, Icon } from 'antd';
 import {connect} from 'react-redux'
 import Link from 'next/link'
-import Role from '../role'
 import { Trans} from "@lingui/macro"
 import Button from '../../components/button'
 
@@ -20,16 +19,12 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
     >
       <SubMenu key="sub1" title={<span><Icon type="mail" /><span><Trans>Edu</Trans></span></span>}>
         <SubMenu key="g1" title={<span><Icon type="appstore" /><span><Trans>Directory</Trans></span></span>}>
-        <Role roles={["user", "admin"]} key="1">
-          <Menu.Item>
+          <Menu.Item key="1">
             <Link href="/edu/ages"><a><Trans>Ages</Trans></a></Link>
           </Menu.Item>  
-          </Role>        
-          <Role roles={["admin"]} key="2">
-            <Menu.Item>
+            <Menu.Item key="2">
               <Link href="/edu/classes"><a><Trans>Classes</Trans></a></Link>
             </Menu.Item>
-          </Role>
           <Menu.Item key="3">
           <Link href="/edu/school_years"><a><Trans>School Years</Trans></a></Link>
           </Menu.Item>
@@ -59,7 +54,7 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
         </SubMenu>
         <SubMenu key="g3" title={<span><Icon type="appstore" /><span><Trans>Attendance</Trans></span></span>}>
           <Menu.Item key="11">
-            <Link href="/edu/class_attendances"><a><Trans>Students Attendance</Trans></a></Link>
+            <Link href="/edu/student_attendances"><a><Trans>Students Attendance</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu key="g4" title={<span><Icon type="appstore" /><span><Trans>Calendar</Trans></span></span>}>

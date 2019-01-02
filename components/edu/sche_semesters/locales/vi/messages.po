@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2019-01-02 11:55+0700\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: vi\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: components/edu/sche_semesters/listing.js:41
+msgid "New Semester"
+msgstr "Học kỳ mới"
+
+#: components/edu/sche_semesters/index.columns.js:13
+msgid "School Year"
+msgstr "Năm học"
+
+#: components/edu/sche_semesters/index.columns.js:31
+msgid "Semester Action"
+msgstr "Thao tác"
+
+#: components/edu/sche_semesters/listing.js:65
+msgid "Semester Listing"
+msgstr "Danh sách học kỳ"
+
+#: components/edu/sche_semesters/index.columns.js:8
+msgid "Semester Name"
+msgstr "Học kỳ"
+
+#: components/edu/sche_semesters/index.columns.js:21
+msgid "Start date"
+msgstr "Ngày bắt đầu"
+
+#: components/edu/sche_semesters/index.columns.js:26
+msgid "To Date"
+msgstr "Ngày kết thúc"

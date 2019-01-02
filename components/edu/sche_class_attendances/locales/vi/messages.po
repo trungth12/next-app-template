@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2019-01-02 08:22+0700\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: vi\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: components/edu/sche_class_attendances/index.columns.js:38
+msgid "Action"
+msgstr "Thao tác"
+
+#: components/edu/sche_class_attendances/listing.js:65
+msgid "Ages"
+msgstr "Nhóm tuổi"
+
+#: components/edu/sche_class_attendances/index.columns.js:9
+msgid "Checked In ?"
+msgstr "Đã điểm danh ?"
+
+#: components/edu/sche_class_attendances/index.columns.js:14
+msgid "Checked In At"
+msgstr "Đã điểm danh vào lúc"
+
+#: components/edu/sche_class_attendances/index.columns.js:29
+msgid "Class"
+msgstr "Lớp học"
+
+#: components/edu/sche_class_attendances/listing.js:41
+msgid "New Attendance"
+msgstr "Thêm điểm danh"
+
+#: components/edu/sche_class_attendances/index.columns.js:19
+msgid "Student"
+msgstr "Bé"
