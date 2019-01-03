@@ -20,46 +20,46 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
       <SubMenu key="sub1" title={<span><Icon type="mail" /><span><Trans>Edu</Trans></span></span>}>
         <SubMenu key="g1" title={<span><Icon type="appstore" /><span><Trans>Directory</Trans></span></span>}>
           <Menu.Item key="1">
-            <Link href="/edu/ages"><a><Trans>Ages</Trans></a></Link>
+            <Link href="/edu?mod=ages"><a><Trans>Ages</Trans></a></Link>
           </Menu.Item>  
             <Menu.Item key="2">
-              <Link href="/edu/classes"><a><Trans>Classes</Trans></a></Link>
+              <Link href="/edu?mod=classes"><a><Trans>Classes</Trans></a></Link>
             </Menu.Item>
           <Menu.Item key="3">
-          <Link href="/edu/school_years"><a><Trans>School Years</Trans></a></Link>
+          <Link href="/edu?mod=school_years"><a><Trans>School Years</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="4">
-          <Link href="/edu/semesters"><a><Trans>Semester</Trans></a></Link>
+          <Link href="/edu?mod=semesters"><a><Trans>Semester</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="5">
-          <Link href="/edu/weeks"><a><Trans>Weeks</Trans></a></Link>
+          <Link href="/edu?mod=weeks"><a><Trans>Weeks</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="6">
-          <Link href="/edu/terms"><a><Trans>Terms</Trans></a></Link>
+          <Link href="/edu?mod=terms"><a><Trans>Terms</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="7">
-            <Link href="/edu/classrooms"><a><Trans>Classrooms</Trans></a></Link>
+            <Link href="/edu?mod=classrooms"><a><Trans>Classrooms</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="8">
-            <Link href="/edu/students"><a><Trans>Students</Trans></a></Link>
+            <Link href="/edu?mod=students"><a><Trans>Students</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu key="g2" title={<span><Icon type="appstore" /><span><Trans>Admissions</Trans></span></span>}>
           <Menu.Item key="9">
-          <Link href="/edu/class_teachers"><a><Trans>Teacher Admission</Trans></a></Link>
+          <Link href="/edu?mod=class_teachers"><a><Trans>Teacher Admission</Trans></a></Link>
           </Menu.Item>
           <Menu.Item key="10">
-          <Link href="/edu/class_enrollments"><a><Trans>Student Admission</Trans></a></Link>
+          <Link href="/edu?mod=class_enrollments"><a><Trans>Student Admission</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu key="g3" title={<span><Icon type="appstore" /><span><Trans>Attendance</Trans></span></span>}>
           <Menu.Item key="11">
-            <Link href="/edu/student_attendances"><a><Trans>Students Attendance</Trans></a></Link>
+            <Link href="/edu?mod=class_attendances"><a><Trans>Students Attendance</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu key="g4" title={<span><Icon type="appstore" /><span><Trans>Calendar</Trans></span></span>}>
         <Menu.Item key="12">
-            <Link href="/edu/timetables"><a><Trans>Students Timetables</Trans></a></Link>
+            <Link href="/edu?mod=timetables"><a><Trans>Students Timetables</Trans></a></Link>
           </Menu.Item>
         </SubMenu>
       </SubMenu>
