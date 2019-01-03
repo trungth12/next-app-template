@@ -12,7 +12,7 @@ const defaultReducer = ({
   
   return {
     config: {
-      timeout: 2000,
+      timeout: 1000,
     },
     theme: {
       primaryColor: '#1DA57A'
