@@ -31,7 +31,7 @@ msgstr "Danh sách năm học"
 
 #: components/edu/sche_school_years/index.columns.js:9
 msgid "School Year Name"
-msgstr "Tên năm học"
+msgstr "Năm học"
 
 #: components/edu/sche_school_years/index.columns.js:17
 msgid "To Year"
