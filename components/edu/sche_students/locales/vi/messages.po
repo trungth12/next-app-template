@@ -43,8 +43,8 @@ msgstr "Đệm"
 
 #: components/edu/sche_students/listing.js:41
 msgid "New Student"
-msgstr "Thêm mới"
+msgstr "Thêm mới trẻ"
 
 #: components/edu/sche_students/listing.js:65
 msgid "Students Listing"
-msgstr "Danh sách bé"
+msgstr "Danh sách các bé"
