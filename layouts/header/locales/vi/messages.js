@@ -1,0 +1,1 @@
+/* eslint-disable */module.exports={languageData:{"plurals":function(n,ord){if(ord)return n==1?"one":"other";return"other"}},messages:{"About":"V\u1EC1 ch\xFAng t\xF4i","Home":"Trang ch\u1EE7","Login with Google":"\u0110\u0103ng nh\u1EADp v\u1EDBi Google","Logout":"\u0110\u0103ng xu\u1EA5t"}};

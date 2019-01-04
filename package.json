@@ -22,8 +22,9 @@
     "axios": "^0.18.0",
     "graphql-tag": "^2.10.0",
     "next": "^7.0.2",
-    "next-app-store": "^1.1.29",
-    "next-web-config": "^1.0.7",
+    "next-app-store": "^1.2.0",
+    "next-web-config": "^1.0.9",
+    "qs": "^6.6.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "styled-icons": "^6.2.0"

@@ -13,6 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: components/edu/sche_ages/form.js:60
+#~ msgid "<0/>"
+#~ msgstr ""
+
+#: components/edu/sche_ages/form.js:62
 #: components/edu/sche_ages/index.columns.js:9
 msgid "Age Name"
 msgstr "Lứa tuổi"
@@ -25,9 +30,25 @@ msgstr "Lứa tuổi"
 msgid "Ages Listing"
 msgstr "Danh sách Nhóm tuổi"
 
+#: components/edu/sche_ages/form.js:116
+msgid "Cancel"
+msgstr "Huỷ"
+
+#: components/edu/sche_ages/form.js:47
+msgid "Create a new age"
+msgstr "Tạo nhóm tuổi mới"
+
+#: components/edu/sche_ages/form.js:91
+msgid "Ending Month"
+msgstr "Tháng kết thúc"
+
 #: components/edu/sche_ages/listing.js:30
 msgid "Export Excel"
 msgstr "Xuất Excel"
+
+#: components/edu/sche_ages/form.js:76
+msgid "From Month"
+msgstr "Tháng bắt đầu"
 
 #: components/edu/sche_ages/index.columns.js:15
 msgid "From month"
@@ -36,6 +57,33 @@ msgstr "Từ tháng"
 #: components/edu/sche_ages/listing.js:41
 msgid "New Age"
 msgstr "Tạo mới"
+
+#: components/edu/sche_ages/form.js:64
+#: components/edu/sche_ages/form.js:66
+msgid "Please enter age name"
+msgstr "Vui lòng nhập tên nhóm tuổi"
+
+#: components/edu/sche_ages/form.js:93
+#: components/edu/sche_ages/form.js:95
+msgid "Please enter ending month"
+msgstr "Vui lòng nhập tháng kết thúc"
+
+#: components/edu/sche_ages/form.js:78
+#: components/edu/sche_ages/form.js:80
+msgid "Please enter starting month"
+msgstr "Vui lòng nhập tháng bắt đầu"
+
+#: components/edu/sche_ages/form.js:89
+#~ msgid "Please enter user name"
+#~ msgstr "Vui lòng điền tên"
+
+#: components/edu/sche_ages/form.js:85
+#~ msgid "Please enter user name 1"
+#~ msgstr "Vui lòng điền tên"
+
+#: components/edu/sche_ages/form.js:119
+msgid "Submit"
+msgstr "Hoàn thành"
 
 #: components/edu/sche_ages/index.columns.js:20
 msgid "To Month"

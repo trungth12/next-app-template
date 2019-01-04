@@ -9,4 +9,3 @@ const env = {
 
 const babelConfig = require('next-web-config/babel')
 module.exports = babelConfig(env)
-

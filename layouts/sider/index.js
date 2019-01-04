@@ -3,9 +3,10 @@ import {connect} from 'react-redux'
 import Link from 'next/link'
 import { Trans} from "@lingui/macro"
 import Button from '../../components/button'
+import localize from 'next-app-store/lib/localize'
 
 const SubMenu = Menu.SubMenu;
-const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
+const Sider = ({inlineCollapsed = false, toggleCollapsed}) => {
   return (
     <div>
       <Button type="primary" onClick={() => toggleCollapsed(!inlineCollapsed)} style={{ margin: 16 }}>
@@ -67,6 +68,10 @@ const Sider = ({inlineCollapsed = true, toggleCollapsed}) => {
     </div>      
   );
 }
+const LocalizedSider = localize(
+  language => ({
+    [language]: require(`./locales/${language}/messages`)
+}))(Sider)
 
 export default connect(
   state => ({inlineCollapsed: state.layouts.inlineCollapsed}),
@@ -75,4 +80,4 @@ export default connect(
   }),
   null,
   { pure: false }
-)(Sider)
+)(LocalizedSider)

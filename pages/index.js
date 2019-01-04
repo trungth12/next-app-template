@@ -3,7 +3,6 @@ import defaultReducer from '../reducer'
 import PageWrapper from '../layouts/page_wrapper'
 import { Row, Col } from 'antd';
 import Ages from '../components/edu/sche_ages'
-import {query as agesQuery} from '../components/edu/sche_ages/index.gql'
 /*
 import TestCrm from '../components/test_crm'
 import {query as crmQuery} from '../components/test_crm/index.gql'
@@ -23,12 +22,8 @@ const Page = () => {
   )
 }
 
-Page.getInitialConfig = async ({language}) => {  
-  const catalogs = {
-    [language]: await import(`../locales/index/locales/${language}/messages`)
-  }
+Page.getInitialConfig = async () => {  
   return {
-    catalogs,
     redux: 'REDUX_STORE_INDEX',
     apollo: {
       "edu": "edu-1.herokuapp.com/v1alpha1/graphql",
@@ -41,7 +36,8 @@ Page.getInitialConfig = async ({language}) => {
 Page.getInitialStore = defaultReducer
 
 Page.getInitialApolloState = async ({apolloClients, fetchPolicy}) => {   
- return apolloClients.edu.query({query: agesQuery, fetchPolicy})
+  const pageQuery = require('../components/edu/sche_ages/index.gql').query
+  return apolloClients.edu.query({query: pageQuery, fetchPolicy})
 }
 
 export default withStore(Page)

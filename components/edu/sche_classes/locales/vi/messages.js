@@ -1,0 +1,1 @@
+/* eslint-disable */module.exports={languageData:{"plurals":function(n,ord){if(ord)return n==1?"one":"other";return"other"}},messages:{"Class Name":"T\xEAn l\u1EDBp","Classes Action":"Thao t\xE1c","Classes Listing":"Danh s\xE1ch l\u1EDBp","Is Skill ?":"L\u1EDBp k\u1EF9 n\u0103ng","New Class":"T\u1EA1o l\u1EDBp m\u1EDBi"}};

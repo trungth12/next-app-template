@@ -1,19 +1,8 @@
 import withStore from 'next-app-store/lib/with-store'
-import defaultReducer from '../reducer'
+//import defaultReducer from 'next-app-store/lib/reducer'
 import PageWrapper from '../layouts/page_wrapper'
 import {withRouter} from 'next/router'
-//import pageQuery from '../components/edu/sche_ages/index.gql'
-//const Ages = dynamic(import('../components/edu/sche_ages'))
-//const pageQuery = require('../components/edu/sche_ages/index.gql')
-//import Ages from '../../components/edu/sche_class_teachers'
-//import {query as agesQuery} from '../../components/edu/sche_class_teachers/index.gql'
-/*
-import TestCrm from '../components/test_crm'
-import {query as crmQuery} from '../components/test_crm/index.gql'
-import TestHr from '../components/test'
-import {query as hrQuery} from '../components/test/index.gql'
-*/
-/* ----- */
+import defaultReducer from '../reducer'
 
 const Page = ({router}) => {
   const {query} = router
@@ -25,15 +14,10 @@ const Page = ({router}) => {
   )
 }
 
-Page.getInitialConfig = async ({language, query}) => {  
+Page.getInitialConfig = async ({query}) => {  
   const {mod} = query
   
-  const catalogs = {
-    [language]: await import(`../locales/edu/${mod}/locales/${language}/messages`)
-  }
-  
   return {
-    catalogs,
     redux: `REDUX_STORE_EDU_${mod}`,
     apollo: {
       "edu": "edu-1.herokuapp.com/v1alpha1/graphql",

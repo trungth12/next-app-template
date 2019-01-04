@@ -18,7 +18,34 @@ sche_ages{
 }
 ${fragment}
 `
-
+/*
+{
+  "age_name": "Test 1",
+  "from_month": 2,
+  "to_month": 4,
+  "is_active": false
+}
+*/
+export const createAgesMutation = gql`
+mutation createAges(
+  $age_name:String,
+  $from_month:Int,
+  $to_month:Int,
+){
+  insert_sche_ages(
+    objects:{
+      age_name:$age_name,
+      from_month:$from_month,
+      to_month:$to_month,
+    }
+  ){
+    affected_rows
+    returning{
+      id
+    }
+  }
+}
+`
 
 export const subscription = gql`
 subscription{

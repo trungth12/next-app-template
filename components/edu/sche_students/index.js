@@ -8,7 +8,7 @@ export default withQuery({
   apollo: 'edu',
   query,
   subscription,
-  name: 'sche_classrooms',
+  name: 'sche_students',
   columns,
 })(localize(
   language => ({

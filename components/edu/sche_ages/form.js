@@ -1,10 +1,13 @@
 import React from 'react'
 import {
-  Drawer, Form, Col, Row, Input, Select, DatePicker, Icon,
+  Drawer, Form, Col, Row, Input, Icon,
 } from 'antd';
 import Button from './button'
-
-const { Option } = Select;
+import {Trans, t} from "@lingui/macro"
+import withApollo from 'next-app-store/lib/with-apollo'
+import { I18n } from "@lingui/react"
+import {createAgesMutation} from './index.gql'
+import {Mutation} from 'react-apollo'
 
 class DrawerForm extends React.Component {
   state = { visible: false };
@@ -21,6 +24,17 @@ class DrawerForm extends React.Component {
     });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, variables) => {
+      console.log(variables)
+      if (!err) {
+        this.props.action({variables})
+      }
+    });
+
+  }
+
   render() {
     const {label} = this.props
     const { getFieldDecorator } = this.props.form;
@@ -30,7 +44,7 @@ class DrawerForm extends React.Component {
           <Icon type="plus" /> {label}
         </Button>
         <Drawer
-          title="Create a new account"
+          title={<Trans>Create a new age</Trans>}
           width={720}
           onClose={this.onClose}
           visible={this.state.visible}
@@ -43,91 +57,46 @@ class DrawerForm extends React.Component {
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col span={12}>
-                <Form.Item label="Name">
-                  {getFieldDecorator('name', {
-                    rules: [{ required: true, message: 'Please enter user name' }],
-                  })(<Input placeholder="Please enter user name" />)}
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item label="Url">
-                  {getFieldDecorator('url', {
-                    rules: [{ required: true, message: 'Please enter url' }],
+              <I18n>
+                {({ i18n }) => (
+                <Form.Item label={<Trans>Age Name</Trans>}>
+                  {getFieldDecorator('age_name', {
+                    rules: [{ required: true, message: <Trans>Please enter age name</Trans> }],
                   })(
-                    <Input
-                      style={{ width: '100%' }}
-                      addonBefore="http://"
-                      addonAfter=".com"
-                      placeholder="Please enter url"
-                    />
+                    <Input placeholder={i18n._(t`Please enter age name`)} />
                   )}
                 </Form.Item>
+                )}</I18n>
               </Col>
             </Row>
             <Row gutter={16}>
               <Col span={12}>
-                <Form.Item label="Owner">
-                  {getFieldDecorator('owner', {
-                    rules: [{ required: true, message: 'Please select an owner' }],
+              <I18n>
+                {({ i18n }) => (
+                <Form.Item label={<Trans>From Month</Trans>}>
+                  {getFieldDecorator('from_month', {
+                    rules: [{ required: true, message: <Trans>Please enter starting month</Trans> }],
                   })(
-                    <Select placeholder="Please select an owner">
-                      <Option value="xiao">Xiaoxiao Fu</Option>
-                      <Option value="mao">Maomao Zhou</Option>
-                    </Select>
+                    <Input placeholder={i18n._(t`Please enter starting month`)} />
                   )}
                 </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item label="Type">
-                  {getFieldDecorator('type', {
-                    rules: [{ required: true, message: 'Please choose the type' }],
-                  })(
-                    <Select placeholder="Please choose the type">
-                      <Option value="private">Private</Option>
-                      <Option value="public">Public</Option>
-                    </Select>
-                  )}
-                </Form.Item>
+                )}
+                </I18n>
               </Col>
             </Row>
             <Row gutter={16}>
               <Col span={12}>
-                <Form.Item label="Approver">
-                  {getFieldDecorator('approver', {
-                    rules: [{ required: true, message: 'Please choose the approver' }],
+              <I18n>
+                      {({ i18n }) => (
+                <Form.Item label={<Trans>Ending Month</Trans>}>
+                  {getFieldDecorator('to_month', {
+                    rules: [{ required: true, message: <Trans>Please enter ending month</Trans> }],
                   })(
-                    <Select placeholder="Please choose the approver">
-                      <Option value="jack">Jack Ma</Option>
-                      <Option value="tom">Tom Liu</Option>
-                    </Select>
+                    <Input placeholder={i18n._(t`Please enter ending month`)} />
                   )}
                 </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item label="DateTime">
-                  {getFieldDecorator('dateTime', {
-                    rules: [{ required: true, message: 'Please choose the dateTime' }],
-                  })(
-                    <DatePicker.RangePicker
-                      style={{ width: '100%' }}
-                      getPopupContainer={trigger => trigger.parentNode}
-                    />
                   )}
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col span={24}>
-                <Form.Item label="Description">
-                  {getFieldDecorator('description', {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'please enter url description',
-                      },
-                    ],
-                  })(<Input.TextArea rows={4} placeholder="please enter url description" />)}
-                </Form.Item>
+                  </I18n>
               </Col>
             </Row>
           </Form>
@@ -144,10 +113,10 @@ class DrawerForm extends React.Component {
             }}
           >
             <Button onClick={this.onClose} style={{ marginRight: 8 }}>
-              Cancel
+            <Trans>Cancel</Trans>
             </Button>
-            <Button onClick={this.onClose} type="primary">
-              Submit
+            <Button onClick={this.handleSubmit} type="primary">
+              <Trans>Submit</Trans>
             </Button>
           </div>
         </Drawer>
@@ -157,4 +126,12 @@ class DrawerForm extends React.Component {
 }
 
 const App = Form.create()(DrawerForm);
-export default App
+
+const MutatedForm = ({...rest}) => {
+  return (
+    <Mutation mutation={createAgesMutation}>
+    {action => <App action={action} {...rest} />}
+    </Mutation>
+  )
+}
+export default withApollo('edu')(MutatedForm)

@@ -13,6 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: components/edu/sche_ages/form.js:60
+#~ msgid "<0/>"
+#~ msgstr ""
+
+#: components/edu/sche_ages/form.js:62
 #: components/edu/sche_ages/index.columns.js:9
 msgid "Age Name"
 msgstr ""
@@ -25,8 +30,24 @@ msgstr ""
 msgid "Ages Listing"
 msgstr ""
 
+#: components/edu/sche_ages/form.js:116
+msgid "Cancel"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:47
+msgid "Create a new age"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:91
+msgid "Ending Month"
+msgstr ""
+
 #: components/edu/sche_ages/listing.js:30
 msgid "Export Excel"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:76
+msgid "From Month"
 msgstr ""
 
 #: components/edu/sche_ages/index.columns.js:15
@@ -35,6 +56,33 @@ msgstr ""
 
 #: components/edu/sche_ages/listing.js:41
 msgid "New Age"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:64
+#: components/edu/sche_ages/form.js:66
+msgid "Please enter age name"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:93
+#: components/edu/sche_ages/form.js:95
+msgid "Please enter ending month"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:78
+#: components/edu/sche_ages/form.js:80
+msgid "Please enter starting month"
+msgstr ""
+
+#: components/edu/sche_ages/form.js:89
+#~ msgid "Please enter user name"
+#~ msgstr ""
+
+#: components/edu/sche_ages/form.js:85
+#~ msgid "Please enter user name 1"
+#~ msgstr ""
+
+#: components/edu/sche_ages/form.js:119
+msgid "Submit"
 msgstr ""
 
 #: components/edu/sche_ages/index.columns.js:20

@@ -12,6 +12,7 @@ import LanguageChooser from '../language_chooser'
 import RolesChooser from '../roles_chooser'
 import Button from '../../components/button'
 import { Trans} from "@lingui/macro"
+import localize from 'next-app-store/lib/localize'
 
 class App extends React.Component {
   state = {
@@ -84,6 +85,12 @@ class App extends React.Component {
   }
 }
 
+const LocalizedHeader = localize(
+  language => ({
+    [language]: require(`./locales/${language}/messages`)
+}))(App)
+
+
 export default connect(
   state => ({
     isLoggedIn: (state.auth.token && state.auth.token !== null),
@@ -95,4 +102,4 @@ export default connect(
     onLoginSuccess: dispatch.auth.login,
     onLogoutSuccess: dispatch.auth.logout,
   })
-)(withRouter(App))
+)(withRouter(LocalizedHeader))

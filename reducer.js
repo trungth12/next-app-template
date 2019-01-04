@@ -1,6 +1,7 @@
 import { effect } from 'easy-peasy'; // 👈 import the helper
 import axios from 'axios'
 import Router from 'next/router'
+import qs from 'qs'
 const dev = process.env.NODE_ENV !== 'production'
 const apiUrl = dev ? 'http://localhost:3001' : `https://api.${process.env.DOMAIN}`
 const defaultReducer = ({
@@ -19,7 +20,7 @@ const defaultReducer = ({
     },
     layouts: {      
       loading: false,
-      inlineCollapsed: true,
+      inlineCollapsed: false,
       toggleCollapsed: (state, payload) => {
         state.inlineCollapsed = payload
       },
@@ -46,15 +47,25 @@ const defaultReducer = ({
               withCredentials: true //correct
             })
             //dispatch.auth.tokenSaved(token)
-            location.replace('/')
+            //location.replace('/')
             //Router.replace('/')
+            //location.reload()
+            dispatch.i18n.setPureLanguage(payload)
+            let parsed = qs.parse(location.search.substring(1))
+            parsed.language = payload
+            const qstr = qs.stringify(parsed)
+            const href = `${location.pathname}?${qstr}`
+            const as = href
+            Router.push(href, as)
           } catch (err) {          
             dispatch.error.setError(err.toString())
             dispatch.layouts.setLoading(false)
           }
-        }, timeout)
-        
-      })
+        }, timeout)        
+      }),
+      setPureLanguage: (state, payload) => {
+        state.language = payload
+      }
     },
     error: {
       errorMessage: null,
@@ -115,16 +126,21 @@ const defaultReducer = ({
             //AxiosRequestConfig parameter
             withCredentials: true //correct
           })
-          setTimeout(async () => {
-            //dispatch.auth.tokenSaved(token)
-            location.replace('/')
-            //Router.replace('/')
-          }, timeout)
+          dispatch.auth.setPureRole(payload)
+          let parsed = qs.parse(location.search.substring(1))
+          parsed.role = payload
+          const qstr = qs.stringify(parsed)
+          const href = `${location.pathname}?${qstr}`
+          const as = href
+          Router.push(href, as)
         } catch (err) {
           dispatch.layouts.setLoading(false)
           dispatch.error.setError(err.toString())
         }
-      })
+      }),
+      setPureRole: (state, payload) => {
+        state.role = payload
+      }
     },
     test: {
       data: 'Hello World 1',

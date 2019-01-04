@@ -32,8 +32,12 @@ const config = {
     }
   }
 }
+const webpackConfig = (config, options) => {
+  return config
+}
+
 const nextConfig = moduleExists('next-web-config/next')
-  ? require('next-web-config/next')(config)
+  ? require('next-web-config/next')(config, webpackConfig)
   : {};
 
 function moduleExists(name) {
