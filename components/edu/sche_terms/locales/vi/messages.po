@@ -19,7 +19,7 @@ msgstr "Ngày kết thúc"
 
 #: components/edu/sche_terms/listing.js:41
 msgid "New Term"
-msgstr "Giai đoạn mới"
+msgstr "Thêm giai đoạn mới"
 
 #: components/edu/sche_terms/index.columns.js:8
 msgid "Semester of Term"
@@ -35,4 +35,4 @@ msgstr "Thao tác"
 
 #: components/edu/sche_terms/listing.js:65
 msgid "Terms Listing"
-msgstr "Danh sách giai đoạn theo kỳ học"
+msgstr "Danh sách các giai đoạn"
