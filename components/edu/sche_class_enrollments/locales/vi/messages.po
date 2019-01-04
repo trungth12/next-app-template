@@ -23,15 +23,15 @@ msgstr "Thêm trẻ vào lớp"
 
 #: components/edu/sche_class_enrollments/index.columns.js:14
 msgid "Student"
-msgstr "Trẻ"
+msgstr "Bé"
 
 #: components/edu/sche_class_enrollments/index.columns.js:24
 msgid "Student Class"
-msgstr "Lớp của trẻ"
+msgstr "Lớp của bé"
 
 #: components/edu/sche_class_enrollments/index.columns.js:34
 msgid "Students Enrollment Action"
-msgstr "Thao tác"
+msgstr "Thao tác điểm danh"
 
 #: components/edu/sche_class_enrollments/listing.js:65
 msgid "Students Enrollment Listing"
